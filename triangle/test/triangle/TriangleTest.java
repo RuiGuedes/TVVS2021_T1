@@ -54,4 +54,22 @@ public class TriangleTest {
     testTriangle(5, 2, 2, INVALID); 
     testTriangle(2, 5, 2, INVALID);
   }
+
+  @Test
+  public void testMutants() {
+    testTriangle(0, 0, 0, INVALID);
+    testTriangle(1, 0, 0, INVALID);
+    testTriangle(1, 1, 0, INVALID);
+
+    testTriangle(0, 1, 0, INVALID);
+    testTriangle(0, 0, 1, INVALID);
+    testTriangle(0, 1, 1, INVALID);
+
+    testTriangle(1, 1, 0, INVALID);
+    testTriangle(1, 0, 1, INVALID);
+
+    testTriangle(-1, 1, 1, INVALID); 
+    testTriangle(1, -1, 1, INVALID); 
+    testTriangle(1, 1, -1, INVALID); 
+  }
 }
