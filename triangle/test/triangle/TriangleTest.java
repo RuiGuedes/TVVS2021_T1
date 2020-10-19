@@ -57,7 +57,7 @@ public class TriangleTest {
 
   @Test
   public void testMutants() {
-    // Equivalent mutants: 11, 59, 76, 87, 101, 105, 111, 122, 128, 136, 139, 145
+    // Equivalent mutants: 11 59 76 87 101 111 128 136 145
 
     // Kills live mutants: 2, 3, 13, 22
     testTriangle(0, 1, 0, INVALID);
@@ -83,6 +83,11 @@ public class TriangleTest {
     testTriangle(6, 2, 3, INVALID);
     testTriangle(3, 5, 2, INVALID);
     testTriangle(3, 6, 2, INVALID);
+
+    // Kills live mutants: 105, 122, 139
+    testTriangle(3, 3, 7, INVALID);
+    testTriangle(7, 3, 3, INVALID);
+    testTriangle(3, 7, 3, INVALID);
 
     // Kills live mutants: 109, 126, 143
     testTriangle(2, 2, 4, INVALID);
