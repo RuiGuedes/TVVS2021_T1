@@ -1,0 +1,153 @@
+#################
+# Group Members #
+#################
+
+Rui Jorge Leão Guedes
+* Student Number: 201603854
+* E-Mail: up201603854@fe.up.pt
+
+Duarte Manuel Marques Mano Menezes Frazão
+* Student Number: 201605658
+* E-Mail: up201605658@fe.up.pt 
+
+Fábio Manuel Neves de Araújo
+* Student Number: 201607944
+* E-Mail: up201607944@fe.up.pt 
+
+##############
+# Question 1 #
+##############
+
+## Instrumenting Java source code 
+A: Direct mapping of the coverage results to the source code
+D: Dependant on the source code or recompilation
+
+## Instrumenting Java byte code
+A: Not dependant on the source code or recompilation
+D: Inability to correctly map the coverage results back to the source code
+
+## Which is better for code coverage
+Given that the benefits of instrumenting java byte code are very appealing compared to source code instrumenting, generally byte code instrumenting will be the best option:
+* Not requiring source code or recompilation
+* Position of the probes more precisely (used to mark sections as covered)
+* Able to handle generated code (being that they are only visible in bytecode)
+
+However, given that byte code instrumenting, in the case of white-box testing, has the possibility of generating:
+* Falsely not covering - resulting in additional steps needed to cover the already covered code
+* Falsely covering - resulting in a false sense of security
+
+Therefore, it needs to be taken into account the possible disadvantages of instrumenting byte code. When a more accurate coverage analysis is required, then an instrumenting source code might be a better option.
+
+##############
+# Question 2 #
+##############
+
+In total, there are 150 mutants generated. Our coverage-adequate test suite covers all of them, but only 118 are detected and killed. The remaining 32 mutants are alive. As such, the mutation score is 78,67%, which is lesser than what it should be (100%). The mutants that our coverage-adequate test suite does not cover are: 2 3 4 7 8 9 11 12 13 18 22 59 63 67 70 74 76 80 81 85 87 101 105 109 111 122 126 128 136 139 143 145.
+
+##############
+# Question 3 #
+##############
+
+To satisfy mutation adequacy, we need to achieve a mutation score (the ratio of dead mutants over the total number of non-equivalent mutants) of 100%. To accomplish such value, we had to analyze 32 additional mutants. From this set of 32 mutants, we were able to kill 23 of them, being the remaining nine non-equivalent mutants. After such an analysis, we could cover and detect all the mutants completely to achieve a mutation score of 100%.
+
+Mutation score = [141 / (150-9)] * 100 = 100%
+
+##############
+# Question 4 #
+##############
+
+There are, in total, nine equivalent mutants with the following id's: 11 59 76 87 101 111 128 136 145. For each one of them, there is their formal proof of equivalence below.
+
+#11
+
+[-]	[if (a <= 0 || b <= 0 || c <= 0)]
+[+] 	[if (a <= 0 != b <= 0 || c <= 0)]
+
+By looking at the difference between the original statement and the mutated one, we conclude that [c] needs to be greater than zero; otherwise, both statements will evaluate to true, having the same result (INVALID). Then the conditions can be resumed as follows:
+
+[-]	[if (a <= 0 || b <= 0]
+[+] 	[if (a <= 0 != b <= 0]
+
+For the mutated statement to evaluate as true, one of the semi-conditions [a <= 0] [b <= 0] must be true, being the other false. Otherwise, the statement will evaluate as false.
+
+If the mutated statement evaluates as true, it means that the original one also evaluates as true, having both the same result (INVALID). However, in every other scenario where the mutated statement evaluates as false, either [a > 0 and b > 0] or [a <= 0 and b <= 0], both statements will also the same result. The only difference here is that, for the latter, the result will be INVALID as the default result for the mutated expression, while for the original one, it will INVALID because the condition under analysis evaluates as true.
+
+#59
+
+[-]	[if (trian == 0)]
+[+]	[if (trian <= 0)]
+
+The [trian] variable can only assume the following values: 0 1 2 3 4 5 6. As such, we can conclude that both operators, in this case, are equivalent because there is no chance of [trian] assuming a value lesser than 0.
+
+#76
+
+[-]	[if (a + b <= c || a + c <= b || b + c <= a)]
+[+]	[if (a + b <= c != a + c <= b || b + c <= a)]
+
+This specific mutant is located in a particular part of the code, where it is possible to infer that every side length is different and greater than 0. 
+
+By looking at the original statement, we conclude that it is a mutually exclusive conditional statement meaning that only one of the semi-conditions can be true at a time; otherwise, all of them are false, and the [trian] variable is SCALENE.
+
+The logic behind this particular live mutant logic is similar to the one used in the live mutant #11. However, in this specific situation, the mutated statement will only evaluate as false if all the semi-conditions are false as it happens in the original statement. Otherwise, both statements will evaluate as true, having the same result (INVALID).
+
+#87
+
+[-]	[if (a + b <= c || a + c <= b || b + c <= a)]
+[+]	[if ((a + b <= c || a + c <= b) != b + c <= a)]
+
+The explanation for this live mutant is similar to the one used for the live mutant #76. The only difference here is in terms of the semi-conditions precedence. However, in this particular case, such precedence does not imply a different result. As such, it also corresponds to an equivalent mutant.
+
+#101
+
+[-]	[if (trian == 1 && a + b > c)]
+[+]	[if (trian <= 1 && a + b > c)]
+
+The [trian] variable can only assume the following values: 0 1 2 3 4 5 6. This specific mutant is located in a particular part of the code, indicating that its value can only be 1, 2, or 3. As a result, both the operators [==] and [<=] in this specific context are equivalent.
+
+#136
+
+[-]	[else if (trian == 3 && b + c > a)]
+[+]	[else if (trian >= 3 && b + c > a)]
+
+The [trian] variable can only assume the following values: 0 1 2 3 4 5 6. This specific mutant is located in a particular part of the code, indicating that its value can only be 3. As a result, both the operators == and [>=] in this specific context are equivalent.
+
+#111, #128, #145 
+
+[-]	[if (trian == 1 && a + b > c)]
+[+]	[if (trian == 1 == a + b > c)]
+
+[-]	[else if (trian == 2 && a + c > b)]
+[+]	[else if (trian == 2 == a + c > b)]
+
+[-]	[else if (trian == 3 && b + c > a)]
+[+]	[else if (trian == 3 == b + c > a)]
+
+The explanation for both these three live mutants is the same since they present the same problem under the same conditions.
+
+In the part of the code where these mutated statements are located, the [trian] variable must either be ISOSCELES or INVALID. 
+
+For the original conditional statement to evaluate as true, all semi-conditions must be true; otherwise, it will evaluate as false. On the other hand, the mutated statement will evaluate as true if the semi-conditions are simultaneously true or false; otherwise, it will also evaluate as false.
+
+As such, the only possibility of exploiting this mutant is when both the semi-conditions are false. In every other scenario, both statements will have the same result.
+
+However, every time the first semi-condition is false, due to code constraints, the second one is forced to be true, leading the statement to evaluate as false. Let's check the following generic explanation that can be applied to any of the live mutants under analysis.
+
+(a) 	S1 && x + y > z
+(b) 	S1 == x + y > z
+
+If S1 is false, then either [x=z] or [y=z].
+
+(a) 	False
+(b) 	[False == z + y > z] OR [False == x + z > z]
+<=>	[False == TRUE] 
+<=>	False
+
+We can then conclude that these are equivalent mutants.
+
+##############
+# Question 5 #
+##############
+
+After deleting the assert statement in the testTriangle method, we could observe that nothing happened in terms of coverage. However, we verified that all of the 150 generated mutants were not detected in terms of mutations. The reason behind this is straightforward. By eliminating the assert statement in the testTriangle method, we don't compare the expected result with the actual one, leading not to catch any mutant since all the modifications cannot be detected. On the other hand, nothing happens in terms of coverage since we are still going through all the code.
+
+As we can observe, using the code coverage ratio as an adequacy criterion, despite its benefits, it is not recommendable since we cannot test the software robustness. Thus, we should use other types of adequacy criteria like the mutation one, which tells how good our test set is.
