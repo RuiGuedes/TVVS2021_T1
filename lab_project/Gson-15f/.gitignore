@@ -1,1 +1,9 @@
 .svn
+target
+all_tests
+cobertura.ser
+coverage.xml
+defects4j.build.properties
+failing_tests
+summary.csv
+.classes*
