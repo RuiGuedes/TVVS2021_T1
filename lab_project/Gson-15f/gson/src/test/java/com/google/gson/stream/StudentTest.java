@@ -11,17 +11,29 @@ import java.io.StringWriter;
 public final class StudentTest extends TestCase {
     
     /**
-     * Just to validate student class
+     * This test aims to kill the following mutant:
+     * 
+     * Operator -> JIR_Ifeq
+     * Lines    -> 146
+     * 
+     * --------------------------------------------
+     * 
+     * This test kills the following mutants:
+     * 
+     * Operator -> JIR_Ifeq
+     * Lines    -> 146
+     * 
+     * Operator -> JIR_Ifge
+     * Lines    -> 146
+     * 
      */
-    public void testInvalidTopLevelTypes() throws IOException {
-        StringWriter stringWriter = new StringWriter();
-        JsonWriter jsonWriter = new JsonWriter(stringWriter);
-        jsonWriter.name("hello");
-        try {
-          jsonWriter.value("world");
-          fail();
-        } catch (IllegalStateException expected) {
-        }
-    }
+    public void testReplacementCharUnicodeLimit() throws IOException {
+      StringWriter stringWriter = new StringWriter();
+      JsonWriter jsonWriter = new JsonWriter(stringWriter);
+      jsonWriter.beginArray();    
+      jsonWriter.value(""); // Unicode character - INFORMATION SEPARATOR
+      jsonWriter.endArray();
+      assertEquals("[\"\\u001f\"]", stringWriter.toString());
+    }  
 
 }

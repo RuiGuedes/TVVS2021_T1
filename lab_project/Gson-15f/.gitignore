@@ -7,3 +7,6 @@ defects4j.build.properties
 failing_tests
 summary.csv
 .classes*
+.settings
+.project
+.classpath
