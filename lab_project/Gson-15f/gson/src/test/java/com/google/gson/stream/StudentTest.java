@@ -184,4 +184,58 @@ public final class StudentTest extends TestCase {
       }   
     }
 
+    /**
+     * This test aims to kill the following mutant:
+     * 
+     * Operator -> JIR_Ifgt
+     * Lines    -> 577
+     * 
+     * --------------------------------------------
+     * 
+     * This test kills the following mutants:
+     * 
+     * Operator -> JIR_Ifgt | JIR_Ifgt
+     * Lines    -> 577      | 579
+     * 
+     */
+    public void testStringUnicodeFormats() throws IOException {
+      StringWriter stringWriter = new StringWriter();
+      JsonWriter jsonWriter = new JsonWriter(stringWriter);
+      jsonWriter.beginObject();
+   
+      jsonWriter.name("1••").value(20);
+      jsonWriter.endObject();
+   
+      assertEquals(stringWriter.toString().length(), "{\"1••\":20}".length());
+    }
+
+    /**
+     * This test aims to kill the following mutant:
+     * 
+     * Operator -> JIR_Ifle
+     * Lines    -> 615
+     * 
+     * --------------------------------------------
+     * 
+     * This test kills the following mutants:
+     * 
+     * Operator -> JIR_Ifle
+     * Lines    -> 615
+     * 
+     */
+    public void testBeforeNameContextEmptyObject() throws IOException {
+      StringWriter stringWriter = new StringWriter();
+      JsonWriter jsonWriter = new JsonWriter(stringWriter);
+      jsonWriter.beginArray();
+      jsonWriter.name("Value: ");
+      
+      StringBuilder stringBuilder = new StringBuilder();
+      stringBuilder.append('\u2027');
+      try {
+        jsonWriter.value(stringBuilder.toString());
+        fail();
+      } catch (IllegalStateException expected) {
+      }
+    }
+
 }
