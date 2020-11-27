@@ -20,11 +20,8 @@ public final class StudentTest extends TestCase {
      * 
      * This test kills the following mutants:
      * 
-     * Operator -> JIR_Ifeq
-     * Lines    -> 146
-     * 
-     * Operator -> JIR_Ifge
-     * Lines    -> 146
+     * Operator -> JIR_Ifeq | JIR_Ifge
+     * Lines    -> 146      | 146
      * 
      */
     public void testReplacementCharUnicodeLimit() throws IOException {
@@ -46,11 +43,8 @@ public final class StudentTest extends TestCase {
      * 
      * This test kills the following mutants:
      * 
-     * Operator -> EGE
-     * Lines    -> 199
-     * 
-     * Operator -> IPC
-     * Lines    -> 199
+     * Operator -> EGE | IPC
+     * Lines    -> 199 | 199
      * 
      */
     public void testJsonWriterGeneralizationCaughtErrors() throws IOException {
@@ -99,11 +93,8 @@ public final class StudentTest extends TestCase {
      * 
      * This test kills the following mutants:
      * 
-     * Operator -> JTD
-     * Lines    -> 253
-     * 
-     * Operator -> JTI
-     * Lines    -> 253
+     * Operator -> JTD | JTI
+     * Lines    -> 253 | 253
      * 
      */
     public void testSetHtmlSafe() throws IOException {
@@ -124,20 +115,73 @@ public final class StudentTest extends TestCase {
      * 
      * This test kills the following mutants:
      * 
-     * Operator -> JTD
-     * Lines    -> 269
-     * 
-     * Operator -> JTI
-     * Lines    -> 269
+     * Operator -> JTD | JTI
+     * Lines    -> 269 | 269
      * 
      */
     public void testSetSerializeNulls() throws IOException {
       JsonWriter jsonWriter = new JsonWriter(new StringWriter());
-      jsonWriter.beginArray();
       
       jsonWriter.setSerializeNulls(false);
       assertFalse(jsonWriter.getSerializeNulls());
     }
 
+    /**
+     * This test aims to kill the following mutant:
+     * 
+     * Operator -> AIR_LeftOperand
+     * Lines    -> 355
+     * 
+     * --------------------------------------------
+     * 
+     * This test kills the following mutants:
+     * 
+     * Operator -> JIR_Ifle | AIR_LeftOperand | AIR_RightOperand | AIR_Div | AIR_Rem | AIR_Sub
+     * Lines    -> 354      | 355             | 355              | 355     | 355     | 355
+     * 
+     */
+    public void testStackPushBoundaries() throws IOException {
+      String expected = "";
+      StringWriter stringWriter = new StringWriter();
+      JsonWriter jsonWriter = new JsonWriter(stringWriter);
+
+      for(int idx = 0; idx <= 32; idx++) {
+        jsonWriter.beginArray();
+        expected += "[";
+      }
+      
+      for(int idx = 0; idx <= 32; idx++) {
+        jsonWriter.endArray();
+        expected += "]";
+      }
+
+      assertEquals(expected, stringWriter.toString());
+    }
+
+    /**
+     * This test aims to kill the following mutant:
+     * 
+     * Operator -> AIR_LeftOperand
+     * Lines    -> 591
+     * 
+     * --------------------------------------------
+     * 
+     * This test kills the following mutants:
+     * 
+     * Operator -> AIR_LeftOperand | AIR_Add
+     * Lines    -> 591             | 591
+     * 
+     */
+    public void testStringWhenLastLessThenLength() throws Exception {
+      StringWriter stringWriter = new StringWriter();
+      JsonWriter jsonWriter = new JsonWriter(stringWriter);
+      jsonWriter.beginObject();
+   
+      jsonWriter.name("\t••\t11\t1••\t•").value(20);
+      jsonWriter.endObject();
+      if(stringWriter.toString().equals("{\"\t\t\t\t•\":20}")) {
+        fail();
+      }   
+    }
 
 }
