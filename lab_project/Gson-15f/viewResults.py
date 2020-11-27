@@ -27,8 +27,9 @@ dataV1Mutants = list(map(lambda x: x["operators"][0] + " | " + str(x["lines"][0]
 
 dataDiff = diff(dataV0Mutants, dataV1Mutants)
 
-print("Operator | Line")
+print("Operator | Line | " + str(len(dataV0Mutants)))
 print("--------------------------------")
+
 
 for mutant in dataV0Mutants:
     print(mutant)
