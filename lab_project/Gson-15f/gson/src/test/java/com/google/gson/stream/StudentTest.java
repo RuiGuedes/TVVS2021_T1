@@ -161,6 +161,42 @@ public final class StudentTest extends TestCase {
     /**
      * This test aims to kill the following mutant:
      * 
+     * Operator -> JIR_Ifgt
+     * Lines    -> 543
+     * 
+     * --------------------------------------------
+     * 
+     * Operator -> JIR_Iflt 
+     * Lines    -> 543
+     * 
+     */
+    public void testFlushException() throws IOException {
+      StringWriter stringWriter = new StringWriter();
+      JsonWriter jsonWriter = new JsonWriter(stringWriter);
+  
+      try {
+        jsonWriter.flush();
+      } catch (IllegalStateException e) {
+        fail();
+      }
+    }
+
+    public void test_558_incomplete() throws IOException {
+      StringWriter stringWriter = new StringWriter();
+      JsonWriter jsonWriter = new JsonWriter(stringWriter);
+  
+      try {
+        jsonWriter.close();
+        fail();
+  
+      } catch (IOException e) {
+        assertEquals("Incomplete document", e.getMessage());
+      }
+    }
+
+    /**
+     * This test aims to kill the following mutant:
+     * 
      * Operator -> EGE
      * Lines    -> 559
      * 
@@ -351,18 +387,6 @@ public final class StudentTest extends TestCase {
         fail();
       } catch (IllegalStateException expected) {
       }
-    }
-
-    public void testUnnamed() throws IOException {
-      StringWriter stringWriter = new StringWriter();
-      JsonWriter jsonWriter = new JsonWriter(stringWriter);
-      
-      jsonWriter.beginObject();
-      jsonWriter.name("a").value(true);      
-      jsonWriter.endObject();
-
-      String expected = "{\"a\":true}";
-      assertEquals(expected, stringWriter.toString());             
     }
 
     /**
