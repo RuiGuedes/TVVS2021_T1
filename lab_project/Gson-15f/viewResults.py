@@ -6,8 +6,8 @@ import json
 
 # This script compares the specified file version with the one (results.json) present in judy's folder.
 
-fileVersion = "V0.json"
-judyFileVersion = "R0.json"
+fileVersion = "V1.json"
+judyFileVersion = "result.json"
 
 # Get difference of two lists
 def diff(list1, list2):
