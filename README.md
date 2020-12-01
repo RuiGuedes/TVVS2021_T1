@@ -37,7 +37,7 @@ Fábio Manuel Neves de Araújo <br>
 ### How to Test
 
 * `defects4j test -t com.google.gson.stream.StudentTest::<function-name>`
-* `defects4j test -t org.apache.commons.lang.time::<function-name>`
+* `defects4j test -t org.apache.commons.lang.time.StudentTest::<function-name>`
 
 ## Judy
 

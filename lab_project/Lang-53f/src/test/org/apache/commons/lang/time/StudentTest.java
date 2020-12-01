@@ -154,75 +154,84 @@ public class StudentTest extends TestCase {
         super.tearDown();
     }
 
-
-    public void test_169_era_lt() {
-        assertNotNull(new DateUtils());
-        Calendar c1 = new GregorianCalendar(2020, 12, 01, 00, 00);
-        Calendar c2 = new GregorianCalendar(2020, 12, 01, 00, 00);
-
-        c1.set(Calendar.ERA, 0);
-        c2.set(Calendar.ERA, 1);
-
-        assertFalse(DateUtils.isSameDay(c1, c2));
+    /**
+     * This test aims to kill the following mutant:
+     * 
+     * Operator -> JIR_Ifgt
+     * Lines    -> 170
+     * 
+     * --------------------------------------------
+     * 
+     * This test kills the following mutants:
+     * 
+     * Operator -> JIR_Ifgt
+     * Lines    -> 170
+     * 
+     */
+    public void testIsSameDayYearGreater() {
+        assertFalse(DateUtils.isSameDay(new GregorianCalendar(2019, 12, 01, 00, 00), 
+                                        new GregorianCalendar(2020, 12, 01, 00, 00)));
     }
 
     /**
-     * Os set Calendar.ERA, são equivalentes, ou não funcionam. Confirmar
+     * This test aims to kill the following mutant:
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 170
+     * 
+     * --------------------------------------------
+     * 
+     * This test kills the following mutants:
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 170
+     * 
      */
-
-    public void test_169_era_gt() {
-        assertNotNull(new DateUtils());
-        Calendar c1 = new GregorianCalendar(2020, 12, 01, 00, 00);
-        Calendar c2 = new GregorianCalendar(2020, 12, 01, 00, 00);
-
-        c1.set(Calendar.ERA, 1);
-        c2.set(Calendar.ERA, 0);
-
-        assertFalse(DateUtils.isSameDay(c1, c2));
+    public void testIsSameDayYearLess() {        
+        assertFalse(DateUtils.isSameDay(new GregorianCalendar(2020, 12, 01, 00, 00),
+                                        new GregorianCalendar(2019, 12, 01, 00, 00)));
     }
 
-    public void test_169_year_gt() {
-        assertNotNull(new DateUtils());
-        Calendar c1 = new GregorianCalendar(2019, 12, 01, 00, 00);
-        Calendar c2 = new GregorianCalendar(2020, 12, 01, 00, 00);
-
-        assertFalse(DateUtils.isSameDay(c1, c2));
+    /**
+     * This test aims to kill the following mutant:
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 171
+     * 
+     * --------------------------------------------
+     * 
+     * This test kills the following mutants:
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 171
+     * 
+     */
+    public void testIsSameDayDayOfYearLess() {
+        assertFalse(DateUtils.isSameDay(new GregorianCalendar(2020, 12, 02, 00, 00),
+                                        new GregorianCalendar(2020, 12, 01, 00, 00)));
     }
 
-    public void test_169_year_lt() {
-        assertNotNull(new DateUtils());
-        Calendar c1 = new GregorianCalendar(2020, 12, 01, 00, 00);
-        Calendar c2 = new GregorianCalendar(2019, 12, 01, 00, 00);
-
-        assertFalse(DateUtils.isSameDay(c1, c2));
+    /**
+     * This test aims to kill the following mutant:
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 190
+     * 
+     * --------------------------------------------
+     * 
+     * This test kills the following mutants:
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 190
+     * 
+     */
+    public void testIsSameInstantLess() {        
+        assertFalse(DateUtils.isSameInstant(new GregorianCalendar(2004, 6, 9, 13, 45).getTime(),
+                                            new GregorianCalendar(2003, 6, 9, 13, 45).getTime()));
     }
 
 
-    public void test_169_dayofyear_lt() {
-        assertNotNull(new DateUtils());
-        Calendar c1 = new GregorianCalendar(2020, 12, 02, 00, 00);
-        Calendar c2 = new GregorianCalendar(2020, 12, 01, 00, 00);
-
-        assertFalse(DateUtils.isSameDay(c1, c2));
-    }
-
-    public void test_169_dayofyear_gt() {
-        assertNotNull(new DateUtils());
-        Calendar c1 = new GregorianCalendar(2020, 12, 01, 00, 00);
-        Calendar c2 = new GregorianCalendar(2020, 12, 02, 00, 00);
-
-        assertFalse(DateUtils.isSameDay(c1, c2));
-    }
-
-    public void test_190() {
-        assertNotNull(new DateUtils());
-        Date d1 = new GregorianCalendar(2004, 6, 9, 13, 45).getTime();
-        Date d2 = new GregorianCalendar(2003, 6, 9, 13, 45).getTime();
-
-        assertFalse(DateUtils.isSameInstant(d1, d2));
-    }
-
-    public void test_228_milisecond_lt() {
+    /* public void test_228_milisecond_lt() {
         assertNotNull(new DateUtils());
         Calendar c1 = new GregorianCalendar(2020, 12, 01, 00, 00);
         Calendar c2 = new GregorianCalendar(2020, 12, 01, 00, 00);
@@ -400,7 +409,7 @@ public class StudentTest extends TestCase {
         } catch (NullPointerException e) {
             fail();
         }
-    }
+    } */
 
     /* public void test_267() throws Exception {
         assertNotNull(new DateUtils());
