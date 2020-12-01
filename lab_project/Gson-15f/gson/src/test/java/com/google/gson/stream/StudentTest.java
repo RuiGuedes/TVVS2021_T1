@@ -161,27 +161,62 @@ public final class StudentTest extends TestCase {
     /**
      * This test aims to kill the following mutant:
      * 
-     * Operator -> AIR_LeftOperand
-     * Lines    -> 591
+     * Operator -> JIR_Ifgt
+     * Lines    -> 543
      * 
      * --------------------------------------------
      * 
-     * This test kills the following mutants:
-     * 
-     * Operator -> AIR_LeftOperand | AIR_Add
-     * Lines    -> 591             | 591
+     * Operator -> JIR_Iflt 
+     * Lines    -> 543
      * 
      */
-    public void testStringWhenLastLessThenLength() throws Exception {
+    public void testFlushException() throws IOException {
       StringWriter stringWriter = new StringWriter();
       JsonWriter jsonWriter = new JsonWriter(stringWriter);
-      jsonWriter.beginObject();
-   
-      jsonWriter.name("\t••\t11\t1••\t•").value(20);
-      jsonWriter.endObject();
-      if(stringWriter.toString().equals("{\"\t\t\t\t•\":20}")) {
+  
+      try {
+        jsonWriter.flush();
+      } catch (IllegalStateException e) {
         fail();
-      }   
+      }
+    }
+
+    public void test_558_incomplete() throws IOException {
+      StringWriter stringWriter = new StringWriter();
+      JsonWriter jsonWriter = new JsonWriter(stringWriter);
+  
+      try {
+        jsonWriter.close();
+        fail();
+  
+      } catch (IOException e) {
+        assertEquals("Incomplete document", e.getMessage());
+      }
+    }
+
+    /**
+     * This test aims to kill the following mutant:
+     * 
+     * Operator -> EGE
+     * Lines    -> 559
+     * 
+     * --------------------------------------------
+     * 
+     * Operator -> EGE | PNC | PNC | 
+     * Lines    -> 559 | 559 | 559 |
+     * 
+     */
+    public void testCloseGeneralMutation() throws IOException {
+      StringWriter stringWriter = new StringWriter();
+      JsonWriter jsonWriter = new JsonWriter(stringWriter);
+  
+      jsonWriter.beginObject();
+  
+      try {
+        jsonWriter.close();
+      } catch (Exception e) {
+        assertEquals(IOException.class, e.getClass());
+      }
     }
 
     /**
@@ -212,6 +247,122 @@ public final class StudentTest extends TestCase {
     /**
      * This test aims to kill the following mutant:
      * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 579
+     * 
+     * --------------------------------------------
+     * 
+     * This test kills the following mutants:
+     * 
+     * Operator -> JIR_Iflt 
+     * Lines    -> 579   
+     * 
+     */
+    public void testStringUnicodeFormatsLast() throws IOException {
+      StringWriter stringWriter = new StringWriter();
+      JsonWriter jsonWriter = new JsonWriter(stringWriter);
+  
+      jsonWriter.beginObject();
+      jsonWriter.name("€").value(1);
+      jsonWriter.endObject();
+  
+      String expected = "{\"€\":1}";
+  
+      assertEquals(expected, stringWriter.toString());
+    }
+
+    /**
+     * This test aims to kill the following mutant:
+     * 
+     * Operator -> JIR_Ifgt
+     * Lines    -> 584
+     * 
+     * --------------------------------------------
+     * 
+     * This test kills the following mutants:
+     * 
+     * Operator -> JIR_Ifgt | JIR_Ifeq
+     * Lines    -> 584      | 584
+     * 
+     * --------------------------------------------
+     * 
+     * Note: This mutant is indeed killed. However, Judy 
+     * does not mark him as killed. After more in-depth 
+     * investigations, it seems that Judy is somehow making 
+     * wrong mutations on this line. For instance, it considers 
+     * the proper operator as a mutant one. We test the program 
+     * to determine if the mutants were killed and verified that 
+     * they are, and so we are marking them as killed.
+     * 
+     */
+    public void testStringReplacementLast() throws IOException {
+      StringWriter stringWriter = new StringWriter();
+      JsonWriter jsonWriter = new JsonWriter(stringWriter);
+      jsonWriter.beginObject();
+      jsonWriter.name("a\f").value(20);
+      jsonWriter.endObject();
+
+      assertEquals("{\"a\\f\":20}", stringWriter.toString());
+    }
+
+    /**
+     * This test aims to kill the following mutant:
+     * 
+     * Operator -> AIR_LeftOperand
+     * Lines    -> 591
+     * 
+     * --------------------------------------------
+     * 
+     * This test kills the following mutants:
+     * 
+     * Operator -> AIR_LeftOperand | AIR_Add
+     * Lines    -> 591             | 591
+     * 
+     */
+    public void testStringWhenLastLessThenLength() throws Exception {
+      StringWriter stringWriter = new StringWriter();
+      JsonWriter jsonWriter = new JsonWriter(stringWriter);
+      jsonWriter.beginObject();
+   
+      jsonWriter.name("\t••\t11\t1••\t•").value(20);
+      jsonWriter.endObject();
+      if(stringWriter.toString().equals("{\"\t\t\t\t•\":20}")) {
+        fail();
+      }   
+    }
+
+    /**
+     * This test aims to kill the following mutant:
+     * 
+     * Operator -> JIR_Ifeq
+     * Lines    -> 602
+     * 
+     * --------------------------------------------
+     * 
+     * Note: The following mutant should be killed with 
+     * this test. However, the mutant is still alive after
+     * this test's implementation. In fact, there should 
+     * be an equivalent mutant for the line under evaluation,
+     * but its operator should be JIR_Ifne and not the one 
+     * Judy presents.
+     * 
+     */
+    public void testNewlineIndent() throws IOException {
+      StringWriter stringWriter = new StringWriter();
+      JsonWriter jsonWriter = new JsonWriter(stringWriter);
+      jsonWriter.setIndent("   ");
+
+      jsonWriter.beginObject();
+      jsonWriter.name("a").value(true);
+      jsonWriter.endObject();
+
+      String expected = "{\n   \"a\": true\n}";
+      assertEquals(expected, stringWriter.toString());
+    }
+
+    /**
+     * This test aims to kill the following mutant:
+     * 
      * Operator -> JIR_Ifle
      * Lines    -> 615
      * 
@@ -236,6 +387,50 @@ public final class StudentTest extends TestCase {
         fail();
       } catch (IllegalStateException expected) {
       }
+    }
+
+    /**
+     * This test aims to kill the following mutant:
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 436
+     * 
+     * --------------------------------------------
+     * 
+     * 
+     * 
+     */
+    public void toCheck_1() throws IOException {
+      StringWriter stringWriter = new StringWriter();
+      JsonWriter jsonWriter = new JsonWriter(stringWriter);
+      jsonWriter.setIndent("");
+      jsonWriter.beginArray();
+      jsonWriter.endArray();
+  
+      String expected = "[]";
+  
+      assertEquals(expected, stringWriter.toString());
+    }
+
+    /**
+     * This test aims to kill the following mutant:
+     * 
+     * Operator -> JIR_Ifgt
+     * Lines    -> 366
+     * 
+     * --------------------------------------------
+     * 
+     * 
+     * 
+     */
+    public void toCheck_2() throws IOException {
+      StringWriter stringWriter = new StringWriter();
+      JsonWriter jsonWriter = new JsonWriter(stringWriter);
+      
+      jsonWriter.beginArray();
+      jsonWriter.endArray();
+
+      assertEquals("[]", stringWriter.toString());      
     }
 
 }
