@@ -402,7 +402,7 @@ public class StudentTest extends TestCase {
         }
     }
 
-    public void test_267() throws Exception {
+    /* public void test_267() throws Exception {
         assertNotNull(new DateUtils());
 
         GregorianCalendar c1 = new GregorianCalendar(1972, Calendar.NOVEMBER, 3);
@@ -416,7 +416,7 @@ public class StudentTest extends TestCase {
         } catch (NullPointerException e) {
             fail();
         }
-    }
+    } */
 
 
 
