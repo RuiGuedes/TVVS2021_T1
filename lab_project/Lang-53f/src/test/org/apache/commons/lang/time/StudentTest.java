@@ -171,66 +171,77 @@ public class StudentTest extends TestCase {
      * 
      */
     public void testIsSameDayEraGreater() {
-            assertFalse(DateUtils.isSameDay(new GregorianCalendar(2020, 12, 01, 00, 00),
-                                            new GregorianCalendar(2020, 12, 01, 00, 00)));
+            assertTrue(DateUtils.isSameDay(new GregorianCalendar(2020, 12, 01, 00, 00),
+                                           new GregorianCalendar(2020, 12, 01, 00, 00)));
     }
 
     /**
-     * This test aims to kill the following mutant:
+     * This test aims to kill the following mutant(s):
      * 
-     * Operator -> JIR_Ifgt
+     * Operator -> JIR_Iflt
      * Lines    -> 170
      * 
-     * --------------------------------------------
+     * -----------------------------------------------
      * 
      * This test kills the following mutants:
      * 
      * Operator -> JIR_Ifgt
      * Lines    -> 170
      * 
+     * -----------------------------------------------
+     * 
+     * By manually testing, we know for sure that this 
+     * mutant should be killed with the current test.
+     * 
      */
-    public void testIsSameDayYearGreater() {
+    public void testIsSameDayYearLess() {
         assertFalse(DateUtils.isSameDay(new GregorianCalendar(2019, 12, 01, 00, 00), 
                                         new GregorianCalendar(2020, 12, 01, 00, 00)));
     }
 
     /**
-     * This test aims to kill the following mutant:
+     * This test aims to kill the following mutant(s):
      * 
-     * Operator -> JIR_Iflt
+     * Operator -> JIR_Ifgt
      * Lines    -> 170
      * 
-     * --------------------------------------------
+     * -----------------------------------------------
      * 
      * This test kills the following mutants:
      * 
      * Operator -> JIR_Iflt
      * Lines    -> 170
      * 
+     * -----------------------------------------------
+     * 
+     * By manually testing, we know for sure that this 
+     * mutant should be killed with the current test.
+     * 
      */
-    public void testIsSameDayYearLess() {        
+    public void testIsSameDayYearGreater() {        
         assertFalse(DateUtils.isSameDay(new GregorianCalendar(2020, 12, 01, 00, 00),
                                         new GregorianCalendar(2019, 12, 01, 00, 00)));
     }
 
     /**
-     * This test aims to kill the following mutant:
+     * This test aims to kill the following mutant(s):
      * 
      * Operator -> JIR_Iflt
      * Lines    -> 171
      * 
-     * --------------------------------------------
+     * -----------------------------------------------
      * 
-     * This test kills the following mutants:
-     * 
-     * Operator -> JIR_Iflt
-     * Lines    -> 171
+     * This test does not kill any mutant. However, by 
+     * manually testing, we know for sure that this 
+     * mutant should be killed with the current test.
      * 
      */
     public void testIsSameDayDayOfYearLess() {
-        assertFalse(DateUtils.isSameDay(new GregorianCalendar(2020, 12, 02, 00, 00),
-                                        new GregorianCalendar(2020, 12, 01, 00, 00)));
+        assertFalse(DateUtils.isSameDay(new GregorianCalendar(2020, 12, 01, 00, 00),
+                                        new GregorianCalendar(2020, 12, 02, 00, 00)));
     }
+
+    // ---------- Until Here Is Refactored -------------
 
     /**
      * This test aims to kill the following mutant:
@@ -521,8 +532,8 @@ public class StudentTest extends TestCase {
      * 
      */
     public void testIsSameLocalTimeEraGreater() {
-        assertFalse(DateUtils.isSameLocalTime(new GregorianCalendar(2020, 12, 01, 00, 00, 00),
-                                              new GregorianCalendar(2020, 12, 01, 00, 00, 00)));
+        assertTrue(DateUtils.isSameLocalTime(new GregorianCalendar(2020, 12, 01, 00, 00, 00),
+                                             new GregorianCalendar(2020, 12, 01, 00, 00, 00)));
     }
 
     /**

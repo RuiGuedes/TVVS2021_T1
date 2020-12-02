@@ -16,7 +16,7 @@ dataV0 = list(filter(lambda x: x["name"] == "org.apache.commons.lang.time.DateUt
 dataV0Mutants = list(map(lambda x: x["operators"][0] + " | " + str(x["lines"][0]), list(filter(lambda x: x["lines"][0] >= 0, sorted(dataV0["notKilledMutant"], key=lambda mutant: mutant["lines"][0])))))
 
 # Filter Non-Killable Mutants
-nonKillableMutants = [169, 234, 235, 259, 260, 517, 519, 602, 604, 641, 899, 901]
+nonKillableMutants = [169, 171, 234, 235, 259, 260, 517, 519, 602, 604, 641, 899, 901]
 dataV1Mutants = list(map(lambda x: x["operators"][0] + " | " + str(x["lines"][0]), list(filter(lambda x: x["lines"][0] >= 0 and x["lines"][0] not in nonKillableMutants, sorted(dataV0["notKilledMutant"], key=lambda mutant: mutant["lines"][0])))))
 
 ## Choose which data to display
