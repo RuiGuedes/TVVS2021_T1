@@ -225,14 +225,50 @@ public class StudentTest extends TestCase {
      * Lines    -> 190
      * 
      */
-    public void testIsSameInstantLess() {        
+    public void testIsSameInstantDateLess() {        
         assertFalse(DateUtils.isSameInstant(new GregorianCalendar(2004, 6, 9, 13, 45).getTime(),
                                             new GregorianCalendar(2003, 6, 9, 13, 45).getTime()));
     }
 
+    /**
+     * This test aims to kill the following mutant:
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 208
+     * 
+     * --------------------------------------------
+     * 
+     * This test kills the following mutants:
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 208
+     * 
+     */
+    public void testIsSameInstantCalendarLess() {
+        Calendar c1 = new GregorianCalendar(2020, 12, 01, 00, 00);
+        Calendar c2 = new GregorianCalendar(2020, 12, 01, 00, 00);
 
-    /* public void test_228_milisecond_lt() {
-        assertNotNull(new DateUtils());
+        c1.set(Calendar.MILLISECOND, 1);
+        c2.set(Calendar.MILLISECOND, 0);
+
+        assertFalse(DateUtils.isSameInstant(c1, c2));
+    }
+
+    /**
+     * This test aims to kill the following mutant:
+     * 
+     * Operator -> JIR_Ifgt
+     * Lines    -> 228
+     * 
+     * --------------------------------------------
+     * 
+     * This test kills the following mutants:
+     * 
+     * Operator -> JIR_Ifgt
+     * Lines    -> 228
+     * 
+     */
+    public void testIsSameLocalTimeMilliGreater() {        
         Calendar c1 = new GregorianCalendar(2020, 12, 01, 00, 00);
         Calendar c2 = new GregorianCalendar(2020, 12, 01, 00, 00);
 
@@ -242,8 +278,21 @@ public class StudentTest extends TestCase {
         assertFalse(DateUtils.isSameLocalTime(c1, c2));
     }
 
-    public void test_228_milisecond_gt() {
-        assertNotNull(new DateUtils());
+    /**
+     * This test aims to kill the following mutant:
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 228
+     * 
+     * --------------------------------------------
+     * 
+     * This test kills the following mutants:
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 228
+     * 
+     */
+    public void testIsSameLocalTimeMilliLess() {        
         Calendar c1 = new GregorianCalendar(2020, 12, 01, 00, 00);
         Calendar c2 = new GregorianCalendar(2020, 12, 01, 00, 00);
 
@@ -253,64 +302,116 @@ public class StudentTest extends TestCase {
         assertFalse(DateUtils.isSameLocalTime(c1, c2));
     }
 
-    public void test_228_second_lt() {
-        assertNotNull(new DateUtils());
-        Calendar c1 = new GregorianCalendar(2020, 12, 01, 00, 00);
-        Calendar c2 = new GregorianCalendar(2020, 12, 01, 00, 00);
-
-        c1.set(Calendar.SECOND, 1);
-        c2.set(Calendar.SECOND, 0);
-
-        assertFalse( DateUtils.isSameLocalTime(c1, c2));
+    /**
+     * This test aims to kill the following mutant:
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 229
+     * 
+     * --------------------------------------------
+     * 
+     * This test kills the following mutants:
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 229
+     * 
+     */
+    public void testIsSameLocalTimeSecondLess() {
+        assertFalse(DateUtils.isSameLocalTime(new GregorianCalendar(2020, 12, 01, 00, 00, 01),
+                                              new GregorianCalendar(2020, 12, 01, 00, 00, 00)));
     }
 
-    public void test_228_second_gt() {
-        assertNotNull(new DateUtils());
-        Calendar c1 = new GregorianCalendar(2020, 12, 01, 00, 00);
-        Calendar c2 = new GregorianCalendar(2020, 12, 01, 00, 00);
-
-        c1.set(Calendar.SECOND, 0);
-        c2.set(Calendar.SECOND, 1);
-
-        assertFalse(DateUtils.isSameLocalTime(c1, c2));
+    /**
+     * This test aims to kill the following mutant:
+     * 
+     * Operator -> JIR_Ifgt
+     * Lines    -> 229
+     * 
+     * --------------------------------------------
+     * 
+     * This test kills the following mutants:
+     * 
+     * Operator -> JIR_Ifgt
+     * Lines    -> 229
+     * 
+     */
+    public void testIsSameLocalTimeSecondGreater() {
+        assertFalse(DateUtils.isSameLocalTime(new GregorianCalendar(2020, 12, 01, 00, 00, 00),
+                                              new GregorianCalendar(2020, 12, 01, 00, 00, 01)));
     }
 
-    public void test_228_minutes_lt() {
-        assertNotNull(new DateUtils());
-        Calendar c1 = new GregorianCalendar(2020, 12, 01, 00, 00);
-        Calendar c2 = new GregorianCalendar(2020, 12, 01, 00, 01);
-
-        assertFalse(DateUtils.isSameLocalTime(c1, c2));
+    /**
+     * This test aims to kill the following mutant:
+     * 
+     * Operator -> JIR_Ifgt
+     * Lines    -> 230
+     * 
+     * --------------------------------------------
+     * 
+     * This test kills the following mutants:
+     * 
+     * Operator -> JIR_Ifgt
+     * Lines    -> 230
+     * 
+     */
+    public void testIsSameLocalTimeMinuteGreater() {
+        assertFalse(DateUtils.isSameLocalTime(new GregorianCalendar(2020, 12, 01, 00, 00, 00), 
+                                              new GregorianCalendar(2020, 12, 01, 00, 01, 00)));
     }
 
-    public void test_228_minutes_gt() {
-        assertNotNull(new DateUtils());
-        Calendar c1 = new GregorianCalendar(2020, 12, 01, 00, 01);
-        Calendar c2 = new GregorianCalendar(2020, 12, 01, 00, 00);
-
-
-        assertFalse(DateUtils.isSameLocalTime(c1, c2));
+    /**
+     * This test aims to kill the following mutant:
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 230
+     * 
+     * --------------------------------------------
+     * 
+     * This test kills the following mutants:
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 230
+     * 
+     */
+    public void testIsSameLocalTimeMinuteLess() {
+        assertFalse(DateUtils.isSameLocalTime(new GregorianCalendar(2020, 12, 01, 00, 01, 00), 
+                                              new GregorianCalendar(2020, 12, 01, 00, 00, 00)));
     }
 
-    public void test_228_hour_lt() {
-        assertNotNull(new DateUtils());
-        Calendar c1 = new GregorianCalendar(2020, 12, 01, 00, 00);
-        Calendar c2 = new GregorianCalendar(2020, 12, 01, 01, 00);
-
-        assertFalse(DateUtils.isSameLocalTime(c1, c2));
+    /**
+     * This test aims to kill the following mutant:
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 231
+     * 
+     * --------------------------------------------
+     * 
+     * This test kills the following mutants:
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 231
+     * 
+     */
+    public void testIsSameLocalTimeHourLess() {
+        assertFalse(DateUtils.isSameLocalTime(new GregorianCalendar(2020, 12, 01, 01, 00, 00),
+                                              new GregorianCalendar(2020, 12, 01, 00, 00, 00)));
     }
 
-    public void test_228_hour_gt() {
-        assertNotNull(new DateUtils());
-        Calendar c1 = new GregorianCalendar(2020, 12, 01, 01, 00);
-        Calendar c2 = new GregorianCalendar(2020, 12, 01, 00, 00);
-
-
-        assertFalse(DateUtils.isSameLocalTime(c1, c2));
-    }
-
-    public void test_228_dayoftheyear_lt() {
-        assertNotNull(new DateUtils());
+    /**
+     * This test aims to kill the following mutant:
+     * 
+     * Operator -> JIR_Ifgt
+     * Lines    -> 232
+     * 
+     * --------------------------------------------
+     * 
+     * This test kills the following mutants:
+     * 
+     * Operator -> JIR_Ifgt
+     * Lines    -> 232
+     * 
+     */
+    public void testIsSameLocalTimeDayOfYearGreater() {        
         Calendar c1 = new GregorianCalendar(2020, 12, 01, 00, 00);
         Calendar c2 = new GregorianCalendar(2020, 12, 01, 00, 00);
 
@@ -320,8 +421,21 @@ public class StudentTest extends TestCase {
         assertFalse(DateUtils.isSameLocalTime(c1, c2));
     }
 
-    public void test_228_dayoftheyear_gt() {
-        assertNotNull(new DateUtils());
+    /**
+     * This test aims to kill the following mutant:
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 232
+     * 
+     * --------------------------------------------
+     * 
+     * This test kills the following mutants:
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 232
+     * 
+     */
+    public void testIsSameLocalTimeDayOfYearLess() {
         Calendar c1 = new GregorianCalendar(2020, 12, 01, 00, 00);
         Calendar c2 = new GregorianCalendar(2020, 12, 01, 00, 00);
 
@@ -331,24 +445,46 @@ public class StudentTest extends TestCase {
         assertFalse(DateUtils.isSameLocalTime(c1, c2));
     }
 
-    public void test_228_year_lt() {
-        assertNotNull(new DateUtils());
-        Calendar c1 = new GregorianCalendar(2019, 12, 01, 00, 00);
-        Calendar c2 = new GregorianCalendar(2020, 12, 01, 00, 00);
-
-        assertFalse(DateUtils.isSameLocalTime(c1, c2));
+    /**
+     * This test aims to kill the following mutant:
+     * 
+     * Operator -> JIR_Ifgt
+     * Lines    -> 233
+     * 
+     * --------------------------------------------
+     * 
+     * This test kills the following mutants:
+     * 
+     * Operator -> JIR_Ifgt
+     * Lines    -> 233
+     * 
+     */
+    public void testIsSameLocalTimeYearGreater() {
+        assertFalse(DateUtils.isSameLocalTime(new GregorianCalendar(2019, 12, 01, 00, 00, 00),
+                                              new GregorianCalendar(2020, 12, 01, 00, 00, 00)));
     }
 
-    public void test_228_year_gt() {
-        assertNotNull(new DateUtils());
-        Calendar c1 = new GregorianCalendar(2020, 12, 01, 00, 00);
-        Calendar c2 = new GregorianCalendar(2019, 12, 01, 00, 00);
-
-        assertFalse(DateUtils.isSameLocalTime(c1, c2));
+    /**
+     * This test aims to kill the following mutant:
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 233
+     * 
+     * --------------------------------------------
+     * 
+     * This test kills the following mutants:
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 233
+     * 
+     */
+    public void testIsSameLocalTimeYearLess() {
+        assertFalse(DateUtils.isSameLocalTime(new GregorianCalendar(2020, 12, 01, 00, 00, 00),
+                                              new GregorianCalendar(2019, 12, 01, 00, 00, 00)));
     }
 
+    // Greater
     public void test_228_era_lt() {
-        assertNotNull(new DateUtils());
         Calendar c1 = new GregorianCalendar(2020, 12, 01, 00, 00);
         Calendar c2 = new GregorianCalendar(2020, 12, 01, 00, 00);
 
@@ -369,13 +505,38 @@ public class StudentTest extends TestCase {
         assertFalse(DateUtils.isSameLocalTime(c1, c2));
     }
 
-    public void test_228_class_gt() {
+    public void testUnnamed() {
         assertNotNull(new DateUtils());
         GregorianCalendar c1 = new GregorianCalendar(2020, Calendar.DECEMBER, 00, 00, 00);
         GregorianCalendar c2 = new GregorianCalendar(2020, Calendar.DECEMBER, 00, 00, 00);
 
-        assertTrue(DateUtils.isSameLocalTime(c1, c2));
+        assertFalse(DateUtils.isSameLocalTime(c1, c2));        
     }
+
+    /*
+
+    public void test_228_era_lt() { // TO CHECk
+        assertNotNull(new DateUtils());
+        Calendar c1 = new GregorianCalendar(2020, 12, 01, 00, 00);
+        Calendar c2 = new GregorianCalendar(2020, 12, 01, 00, 00);
+
+        c1.set(Calendar.ERA, 0);
+        c2.set(Calendar.ERA, 1);
+
+        assertFalse(DateUtils.isSameLocalTime(c1, c2));
+    }
+
+    public void test_228_era_gt() { // TO CHECk
+        assertNotNull(new DateUtils());
+        Calendar c1 = new GregorianCalendar(2020, 12, 01, 00, 00);
+        Calendar c2 = new GregorianCalendar(2020, 12, 01, 00, 00);
+
+        c1.set(Calendar.ERA, 1);
+        c2.set(Calendar.ERA, 0);
+
+        assertFalse(DateUtils.isSameLocalTime(c1, c2));
+    }
+
 
     public void test_259() throws Exception {
         assertNotNull(new DateUtils());
