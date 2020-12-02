@@ -155,6 +155,27 @@ public class StudentTest extends TestCase {
     }
 
     /**
+     * This test aims to kill the following mutant(s):
+     * 
+     * Operator -> JIR_Ifgt
+     * Lines    -> 169
+     * 
+     * -----------------------------------------------
+     * 
+     * This test does not kill any mutant. However, by 
+     * manually testing, we know for sure that the following
+     * mutants should be killed with the current test.
+     * 
+     * Operator -> JIR_Ifgt | JIR_Iflt
+     * Lines    -> 169      | 169
+     * 
+     */
+    public void testIsSameDayEraGreater() {
+            assertFalse(DateUtils.isSameDay(new GregorianCalendar(2020, 12, 01, 00, 00),
+                                            new GregorianCalendar(2020, 12, 01, 00, 00)));
+    }
+
+    /**
      * This test aims to kill the following mutant:
      * 
      * Operator -> JIR_Ifgt
@@ -484,6 +505,53 @@ public class StudentTest extends TestCase {
     }
 
     /**
+     * This test aims to kill the following mutant(s):
+     * 
+     * Operator -> JIR_Ifgt
+     * Lines    -> 234
+     * 
+     * -----------------------------------------------
+     * 
+     * This test does not kill any mutant. However, by 
+     * manually testing, we know for sure that the following
+     * mutants should be killed with the current test.
+     * 
+     * Operator -> JIR_Ifgt | JIR_Iflt
+     * Lines    -> 234      | 234
+     * 
+     */
+    public void testIsSameLocalTimeEraGreater() {
+        assertFalse(DateUtils.isSameLocalTime(new GregorianCalendar(2020, 12, 01, 00, 00, 00),
+                                              new GregorianCalendar(2020, 12, 01, 00, 00, 00)));
+    }
+
+    /**
+     * This test aims to kill the following mutant(s):
+     * 
+     * Operator -> JIR_Ifgt
+     * Lines    -> 260
+     * 
+     * -----------------------------------------------
+     * 
+     * This test does not kill any mutant. However, by 
+     * manually testing, we know for sure that this 
+     * mutant should be killed with the current test.
+     * 
+     */
+    public void testParseDateSimpleDateFormatGreater() throws Exception {
+        GregorianCalendar cal = new GregorianCalendar(1972, Calendar.NOVEMBER, 3);
+        String dateStr = "1972-11-03";
+        String[] patterns = new String[] {"yyyy'-'DDD", "yyyy'-'MM'-'dd", "yyyyMMdd"};
+
+        try {
+            Date date = DateUtils.parseDate(dateStr, patterns);
+            assertEquals(date, cal.getTime());
+        } catch (NullPointerException e) {
+            fail();
+        }
+    }
+
+    /**
      * This test aims to kill the following mutant:
      * 
      * Operator -> EGE
@@ -502,70 +570,94 @@ public class StudentTest extends TestCase {
         catch (IllegalArgumentException e) { assertEquals("The date must not be null", e.getMessage()); }
     }
 
-
-
-    /* ---- TO CHECK -----
-
-    public void test_228_era_lt() {
-        assertNotNull(new DateUtils());
-        Calendar c1 = new GregorianCalendar(2020, 12, 01, 00, 00);
-        Calendar c2 = new GregorianCalendar(2020, 12, 01, 00, 00);
-
-        c1.set(Calendar.ERA, 0);
-        c2.set(Calendar.ERA, 1);
-
-        assertFalse(DateUtils.isSameLocalTime(c1, c2));
-    }
-
-    public void test_228_era_gt() {
-        assertNotNull(new DateUtils());
-        Calendar c1 = new GregorianCalendar(2020, 12, 01, 00, 00);
-        Calendar c2 = new GregorianCalendar(2020, 12, 01, 00, 00);
-
-        c1.set(Calendar.ERA, 1);
-        c2.set(Calendar.ERA, 0);
-
-        assertFalse(DateUtils.isSameLocalTime(c1, c2));
-    }
-
-    public void test_260() throws Exception {
-        assertNotNull(new DateUtils());
-
-        GregorianCalendar c1 = new GregorianCalendar(1972, Calendar.NOVEMBER, 3);
-        String dateStr = "1972-11-03";
-        String[] patterns = new String[] {"yyyy'-'DDD", "yyyy'-'MM'-'dd", "yyyyMMdd"};
-
-        try {
-            Date date = DateUtils.parseDate(dateStr, patterns);
-
-            assertNotNull(date);
-
-        } catch (NullPointerException e) {
-            fail();
-        }
+    /**
+     * This test aims to kill the following mutant(s):
+     * 
+     * Operator -> JIR_Ifle
+     * Lines    -> 641
+     * 
+     * -----------------------------------------------
+     * 
+     * This test kills the following mutants:
+     * 
+     * Operator -> JIR_Ifgt
+     * Lines    -> 641
+     * 
+     * -----------------------------------------------
+     * 
+     * By manually testing, we know for sure that this 
+     * mutant should be killed with the current test.
+     * 
+     */
+    public void testModifyMilliLessOrEqual() throws ParseException {
+        DateFormat dateParse = new SimpleDateFormat("MMM dd, yyyy H:mm:ss.SSS", Locale.ENGLISH);
         
-    } 
-    
-    public void test_267() throws Exception {
-        assertNotNull(new DateUtils());
-
-        GregorianCalendar c1 = new GregorianCalendar(1972, Calendar.NOVEMBER, 3);
-        String dateStr = "1972-11-03";
-        String[] patterns = new String[] {"yyyy'-'DDD"};
-
-        try {
-            Date date = DateUtils.parseDate(dateStr, patterns);
-            assertNotNull(date);
-
-        } catch (NullPointerException e) {
-            fail();
-        }
+        assertEquals(dateParse.parse("November 18, 2001 1:23:12.000"),
+                DateUtils.round(dateParse.parse("November 18, 2001 1:23:11.500"), Calendar.SECOND));
     }
-    */
+
+    /**
+     * This test aims to kill the following mutant(s):
+     * 
+     * Operator -> JIR_Ifgt
+     * Lines    -> 641
+     * 
+     * -----------------------------------------------
+     * 
+     * This test does not kill any mutant. However, by 
+     * manually testing, we know for sure that this 
+     * mutant should be killed with the current test.
+     * 
+     */
+    public void testModifyMilliGreater() throws ParseException {
+        DateFormat dateParse = new SimpleDateFormat("MMM dd, yyyy H:mm:ss.SSS", Locale.ENGLISH);
+        
+        assertEquals(dateParse.parse("November 18, 2001 1:23:12.000"),
+                DateUtils.round(dateParse.parse("November 18, 2001 1:23:11.600"), Calendar.SECOND));
+    }
 
 
-
-
+    /* public void testModify() throws ParseException {
+        DateFormat dateParse = new SimpleDateFormat("MMM dd, yyyy H:mm:ss.SSS", Locale.ENGLISH);
+ 
+        // ROUND
+ 
+        // kill mutant in line 650
+        assertEquals(dateParse.parse("November 18, 2001 1:24:00.000"),
+                DateUtils.round(dateParse.parse("November 18, 2001 1:23:30.500"), Calendar.MINUTE));
+ 
+        // kill mutant in line 659
+        assertEquals(dateParse.parse("November 18, 2001 2:00:00.000"),
+                DateUtils.round(dateParse.parse("November 18, 2001 1:30:30.500"), Calendar.HOUR_OF_DAY));
+ 
+        // kill mutant in lines 683 and 684
+        assertEquals(dateParse.parse("December 1, 2001 0:00:00.000"),
+                DateUtils.round(dateParse.parse("November 30, 2001 1:30:30.500"), DateUtils.SEMI_MONTH));
+ 
+        // kill mutant in line 712
+        assertEquals(dateParse.parse("November 1, 2001 0:00:00.000"),
+                DateUtils.round(dateParse.parse("November 8, 2001 0:00:00.000"), DateUtils.SEMI_MONTH));
+ 
+        // kill mutant in line 721
+        assertEquals(dateParse.parse("November 8, 2001 12:00:00.000"),
+                DateUtils.round(dateParse.parse("November 8, 2001 12:30:30.500"), Calendar.AM_PM));
+ 
+        // kill mutant in line 724
+        assertEquals(dateParse.parse("November 8, 2001 0:00:00.000"),
+                DateUtils.round(dateParse.parse("November 8, 2001 6:30:30.500"), Calendar.AM_PM));
+ 
+        // kill mutant in line 735
+        assertEquals(dateParse.parse("December 01, 2001 0:00:00.000"),
+                DateUtils.round(dateParse.parse("November 16, 2001 11:00:00.000"), Calendar.MONTH));
+        assertEquals(dateParse.parse("November 16, 2001 0:00:00.000"),
+                DateUtils.round(dateParse.parse("November 16, 2001 11:00:00.000"), Calendar.DATE));
+ 
+        // TRUNCATE
+ 
+        // kill mutant in line 708
+        assertEquals(dateParse.parse("December 16, 2001 0:00:00.000"),
+                DateUtils.truncate(dateParse.parse("December 16, 2001 0:00:00.000"), DateUtils.SEMI_MONTH));
+    } */
 
 
 
