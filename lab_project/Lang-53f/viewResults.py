@@ -15,10 +15,17 @@ with open(fileDirJudy) as file:
 dataV0 = list(filter(lambda x: x["name"] == "org.apache.commons.lang.time.DateUtils", fileV0["classes"]))[0]
 dataV0Mutants = list(map(lambda x: x["operators"][0] + " | " + str(x["lines"][0]), list(filter(lambda x: x["lines"][0] >= 0, sorted(dataV0["notKilledMutant"], key=lambda mutant: mutant["lines"][0])))))
 
-print("Operator | Line | " + str(len(dataV0Mutants)))
+# Filter Non-Killable Mutants
+nonKillableMutants = [517, 519, 602, 604, 899, 901]
+dataV1Mutants = list(map(lambda x: x["operators"][0] + " | " + str(x["lines"][0]), list(filter(lambda x: x["lines"][0] >= 0 and x["lines"][0] not in nonKillableMutants, sorted(dataV0["notKilledMutant"], key=lambda mutant: mutant["lines"][0])))))
+
+## Choose which data to display
+datatoDisplay = dataV1Mutants
+
+print("Operator | Line | " + str(len(datatoDisplay)))
 print("--------------------------------")
 
-for mutant in dataV0Mutants:
+for mutant in datatoDisplay:
     print(mutant)
     print("--------------------------------")
 

@@ -483,8 +483,31 @@ public class StudentTest extends TestCase {
                                               new GregorianCalendar(2019, 12, 01, 00, 00, 00)));
     }
 
-    // Greater
+    /**
+     * This test aims to kill the following mutant:
+     * 
+     * Operator -> EGE
+     * Lines    -> 399
+     * 
+     * --------------------------------------------
+     * 
+     * This test kills the following mutants:
+     * 
+     * Operator -> EGE
+     * Lines    -> 399
+     * 
+     */
+    public void testAddIllegalArgException() throws Exception {
+        try { DateUtils.addSeconds(null, 0); } 
+        catch (IllegalArgumentException e) { assertEquals("The date must not be null", e.getMessage()); }
+    }
+
+
+
+    /* ---- TO CHECK -----
+
     public void test_228_era_lt() {
+        assertNotNull(new DateUtils());
         Calendar c1 = new GregorianCalendar(2020, 12, 01, 00, 00);
         Calendar c2 = new GregorianCalendar(2020, 12, 01, 00, 00);
 
@@ -505,56 +528,6 @@ public class StudentTest extends TestCase {
         assertFalse(DateUtils.isSameLocalTime(c1, c2));
     }
 
-    public void testUnnamed() {
-        assertNotNull(new DateUtils());
-        GregorianCalendar c1 = new GregorianCalendar(2020, Calendar.DECEMBER, 00, 00, 00);
-        GregorianCalendar c2 = new GregorianCalendar(2020, Calendar.DECEMBER, 00, 00, 00);
-
-        assertFalse(DateUtils.isSameLocalTime(c1, c2));        
-    }
-
-    /*
-
-    public void test_228_era_lt() { // TO CHECk
-        assertNotNull(new DateUtils());
-        Calendar c1 = new GregorianCalendar(2020, 12, 01, 00, 00);
-        Calendar c2 = new GregorianCalendar(2020, 12, 01, 00, 00);
-
-        c1.set(Calendar.ERA, 0);
-        c2.set(Calendar.ERA, 1);
-
-        assertFalse(DateUtils.isSameLocalTime(c1, c2));
-    }
-
-    public void test_228_era_gt() { // TO CHECk
-        assertNotNull(new DateUtils());
-        Calendar c1 = new GregorianCalendar(2020, 12, 01, 00, 00);
-        Calendar c2 = new GregorianCalendar(2020, 12, 01, 00, 00);
-
-        c1.set(Calendar.ERA, 1);
-        c2.set(Calendar.ERA, 0);
-
-        assertFalse(DateUtils.isSameLocalTime(c1, c2));
-    }
-
-
-    public void test_259() throws Exception {
-        assertNotNull(new DateUtils());
-
-        GregorianCalendar c1 = new GregorianCalendar(1972, Calendar.NOVEMBER, 3);
-
-        String dateStr = "1972-11-03";
-        
-        String[] patterns = new String[] {"yyyy'-'DDD", "yyyy'-'MM'-'dd", "yyyyMMdd"};
-        try {
-            Date date = DateUtils.parseDate(dateStr, patterns);
-
-            assertNotNull(date);
-        } catch (Exception e) {
-            fail();
-        }
-    }
-
     public void test_260() throws Exception {
         assertNotNull(new DateUtils());
 
@@ -570,9 +543,10 @@ public class StudentTest extends TestCase {
         } catch (NullPointerException e) {
             fail();
         }
-    } */
-
-    /* public void test_267() throws Exception {
+        
+    } 
+    
+    public void test_267() throws Exception {
         assertNotNull(new DateUtils());
 
         GregorianCalendar c1 = new GregorianCalendar(1972, Calendar.NOVEMBER, 3);
@@ -586,7 +560,11 @@ public class StudentTest extends TestCase {
         } catch (NullPointerException e) {
             fail();
         }
-    } */
+    }
+    */
+
+
+
 
 
 
