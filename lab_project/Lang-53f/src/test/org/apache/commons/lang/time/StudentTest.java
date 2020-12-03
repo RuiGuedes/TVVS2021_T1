@@ -669,7 +669,180 @@ public class StudentTest extends TestCase {
         DateFormat dateParse = new SimpleDateFormat("MMM dd, yyyy H:mm:ss.SSS", Locale.ENGLISH);
         
         assertEquals(dateParse.parse("November 18, 2001 1:23:12.000"),
-                DateUtils.round(dateParse.parse("November 18, 2001 1:23:11.600"), Calendar.SECOND));
+                     DateUtils.round(dateParse.parse("November 18, 2001 1:23:11.600"), Calendar.SECOND));
+    }
+
+    /**
+     * This test aims to kill the following mutant(s):
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 644
+     * 
+     * -----------------------------------------------
+     * 
+     * This test does not kill any mutant. However, by 
+     * manually testing, we know for sure that this 
+     * mutant should be killed with the current test.
+     * 
+     */
+    public void testModifySecondDone() throws ParseException {
+        DateFormat dateParse = new SimpleDateFormat("MMM dd, yyyy H:mm:ss.SSS", Locale.ENGLISH);
+        
+        assertEquals(dateParse.parse("November 18, 2001 1:23:31.000"), 
+                     DateUtils.round(dateParse.parse("November 18, 2001 1:23:30.600"), Calendar.SECOND));
+    }
+
+    /**
+     * This test aims to kill the following mutant(s):
+     * 
+     * Operator -> JIR_Ifle
+     * Lines    -> 650
+     * 
+     * -----------------------------------------------
+     * 
+     * This test kills the following mutant(s):
+     * 
+     * Operator -> JIR_Ifgt
+     * Lines    -> 650
+     * 
+     * -----------------------------------------------
+     * 
+     * By manually testing, we know for sure that this 
+     * mutant should be killed with the current test.
+     * 
+     */
+    public void testModifySecondLessOrEqual() throws ParseException {
+        DateFormat dateParse = new SimpleDateFormat("MMM dd, yyyy H:mm:ss.SSS", Locale.ENGLISH);
+        
+        assertEquals(dateParse.parse("November 18, 2001 1:24:00.000"), 
+                     DateUtils.round(dateParse.parse("November 18, 2001 1:23:30.000"), Calendar.MINUTE));
+    }
+
+    /**
+     * This test aims to kill the following mutant(s):
+     * 
+     * Operator -> JIR_Ifgt
+     * Lines    -> 650
+     * 
+     * -----------------------------------------------
+     * 
+     * This test does not kill any mutant. However, by 
+     * manually testing, we know for sure that this 
+     * mutant should be killed with the current test.
+     * 
+     */
+    public void testModifySecondGreater() throws ParseException {
+        DateFormat dateParse = new SimpleDateFormat("MMM dd, yyyy H:mm:ss.SSS", Locale.ENGLISH);
+        
+        assertEquals(dateParse.parse("November 18, 2001 1:24:00.000"), 
+                     DateUtils.round(dateParse.parse("November 18, 2001 1:23:35.000"), Calendar.MINUTE));
+    }
+
+    /**
+     * This test aims to kill the following mutant(s):
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 653
+     * 
+     * -----------------------------------------------
+     * 
+     * This test does not kill any mutant. However, by 
+     * manually testing, we know for sure that this 
+     * mutant should be killed with the current test.
+     * 
+     */
+    public void testModifyMinuteDone() throws ParseException {
+        DateFormat dateParse = new SimpleDateFormat("MMM dd, yyyy H:mm:ss.SSS", Locale.ENGLISH);
+        
+        assertEquals(dateParse.parse("November 18, 2001 1:20:00.000"), 
+                     DateUtils.round(dateParse.parse("November 18, 2001 1:20:20.000"), Calendar.MINUTE));
+    }
+
+    /**
+     * This test aims to kill the following mutant(s):
+     * 
+     * Operator -> JIR_Ifle
+     * Lines    -> 659
+     * 
+     * -----------------------------------------------
+     * 
+     * This test kills the following mutant(s):
+     * 
+     * Operator -> JIR_Ifgt
+     * Lines    -> 659
+     * 
+     * -----------------------------------------------
+     * 
+     * By manually testing, we know for sure that this 
+     * mutant should be killed with the current test.
+     * 
+     */
+    public void testModifyHourOfDayLessOrEqual() throws ParseException { 
+        DateFormat dateParse = new SimpleDateFormat("MMM dd, yyyy H:mm:ss.SSS", Locale.ENGLISH);
+        
+        assertEquals(dateParse.parse("November 18, 2001 2:00:00.000"),
+                     DateUtils.round(dateParse.parse("November 18, 2001 1:30:00.000"), Calendar.HOUR_OF_DAY));
+    }
+
+    /**
+     * This test aims to kill the following mutant(s):
+     * 
+     * Operator -> JIR_Ifgt
+     * Lines    -> 659
+     * 
+     * -----------------------------------------------
+     * 
+     * This test does not kill any mutant. However, by 
+     * manually testing, we know for sure that this 
+     * mutant should be killed with the current test.
+     * 
+     */
+    public void testModifyHourOfDayGreater() throws ParseException {
+        DateFormat dateParse = new SimpleDateFormat("MMM dd, yyyy H:mm:ss.SSS", Locale.ENGLISH);
+        
+        assertEquals(dateParse.parse("November 18, 2001 2:00:00.000"),
+                     DateUtils.round(dateParse.parse("November 18, 2001 1:35:00.000"), Calendar.HOUR_OF_DAY));
+    }
+
+    /**
+     * This test aims to kill the following mutant(s):
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 676
+     * 
+     * -----------------------------------------------
+     * 
+     * This test does not kill any mutant. However, by 
+     * manually testing, we know for sure that this 
+     * mutant should be killed with the current test.
+     * 
+     */
+    public void testModifySemiMonthSpecialCase() throws ParseException {
+        DateFormat dateParse = new SimpleDateFormat("MMM dd, yyyy H:mm:ss.SSS", Locale.ENGLISH);
+        
+        assertEquals(dateParse.parse("November 16, 2001 0:00:00.000"),
+                     DateUtils.round(dateParse.parse("November 9, 2001 0:00:00.000"), DateUtils.SEMI_MONTH));
+    }
+
+    /**
+     * This test aims to kill the following mutant(s):
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 712
+     * 
+     * -----------------------------------------------
+     * 
+     * This test kills the following mutant(s):
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 712
+     * 
+     */
+    public void testModifySemiMonthOffset() throws ParseException {
+        DateFormat dateParse = new SimpleDateFormat("MMM dd, yyyy H:mm:ss.SSS", Locale.ENGLISH);
+        
+        assertEquals(dateParse.parse("November 1, 2001 0:00:00.000"),
+                     DateUtils.round(dateParse.parse("November 8, 2001 0:00:00.000"), DateUtils.SEMI_MONTH));
     }
 
     // ---------------- Refactored Until Here --------------------
@@ -678,18 +851,6 @@ public class StudentTest extends TestCase {
         DateFormat dateParse = new SimpleDateFormat("MMM dd, yyyy H:mm:ss.SSS", Locale.ENGLISH);
  
         // ROUND
- 
-        // kill mutant in line 650
-        assertEquals(dateParse.parse("November 18, 2001 1:24:00.000"),
-                DateUtils.round(dateParse.parse("November 18, 2001 1:23:30.500"), Calendar.MINUTE));
- 
-        // kill mutant in line 659
-        assertEquals(dateParse.parse("November 18, 2001 2:00:00.000"),
-                DateUtils.round(dateParse.parse("November 18, 2001 1:30:30.500"), Calendar.HOUR_OF_DAY));
- 
-        // kill mutant in lines 683 and 684
-        assertEquals(dateParse.parse("December 1, 2001 0:00:00.000"),
-                DateUtils.round(dateParse.parse("November 30, 2001 1:30:30.500"), DateUtils.SEMI_MONTH));
  
         // kill mutant in line 712
         assertEquals(dateParse.parse("November 1, 2001 0:00:00.000"),
