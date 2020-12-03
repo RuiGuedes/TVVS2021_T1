@@ -589,9 +589,17 @@ public class StudentTest extends TestCase {
      * 
      * -----------------------------------------------
      * 
-     * This test does not kill any mutant. However, by 
-     * manually testing, we know for sure that this 
-     * mutant should be killed with the current test.
+     * This test should have killed the following 
+     * mutant(s):
+     * 
+     * Operator -> JIR_Ifgt | JIR_Iflt
+     * Lines    -> 260      | 267
+     * 
+     * -----------------------------------------------
+     * 
+     * This test does not kill any mutant. By manually
+     * testing, we know for sure that these mutants 
+     * should be killed with the current test.
      * 
      */
     public void testParseDateSimpleDateFormatGreater() throws Exception {
@@ -994,9 +1002,6 @@ public class StudentTest extends TestCase {
         assertEquals(dateParse.parse("December 01, 2001 0:00:00.000"),
                      DateUtils.round(dateParse.parse("November 16, 2001 11:00:00.000"), Calendar.MONTH));
     }
-
-
-
 
 
 

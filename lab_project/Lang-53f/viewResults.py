@@ -18,7 +18,7 @@ dataV0Mutants = list(map(lambda x: x["operators"][0] + " | " + str(x["lines"][0]
 # Filter Non-Killable Mutants
 syntaxErrorMutants = [517, 519, 602, 604, 675, 729, 899, 901]
 equivalentMutants = [235, 259, 664, 671, 672]
-nonKillableBugMutants = [169, 171, 190, 208, 231, 234, 260, 641, 644, 650, 653, 659, 676, 680, 701, 708, 717, 724, 735, 738]
+nonKillableBugMutants = [169, 171, 190, 208, 231, 234, 260, 267, 641, 644, 650, 653, 659, 676, 680, 701, 708, 717, 724, 735, 738]
 
 excludedMutants = syntaxErrorMutants + equivalentMutants + nonKillableBugMutants
 
