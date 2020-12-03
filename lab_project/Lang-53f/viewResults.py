@@ -16,9 +16,9 @@ dataV0 = list(filter(lambda x: x["name"] == "org.apache.commons.lang.time.DateUt
 dataV0Mutants = list(map(lambda x: x["operators"][0] + " | " + str(x["lines"][0]), list(filter(lambda x: x["lines"][0] >= 0, sorted(dataV0["notKilledMutant"], key=lambda mutant: mutant["lines"][0])))))
 
 # Filter Non-Killable Mutants
-syntaxErrorMutants = [517, 519, 602, 604, 675, 899, 901]
+syntaxErrorMutants = [517, 519, 602, 604, 675, 729, 899, 901]
 equivalentMutants = [235, 259, 664, 671, 672]
-nonKillableBugMutants = [169, 171, 190, 208, 231, 234, 260, 641, 644, 650, 653, 659, 676]
+nonKillableBugMutants = [169, 171, 190, 208, 231, 234, 260, 641, 644, 650, 653, 659, 676, 680, 701, 708, 717, 724, 735, 738]
 
 excludedMutants = syntaxErrorMutants + equivalentMutants + nonKillableBugMutants
 

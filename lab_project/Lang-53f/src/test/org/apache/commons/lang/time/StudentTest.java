@@ -828,6 +828,54 @@ public class StudentTest extends TestCase {
      * This test aims to kill the following mutant(s):
      * 
      * Operator -> JIR_Iflt
+     * Lines    -> 680
+     * 
+     * -----------------------------------------------
+     * 
+     * This test should have killed the following 
+     * mutant(s):
+     * 
+     * Operator -> JIR_Iflt | JIR_Ifgt | JIR_Ifgt
+     * Lines    -> 680      | 680      | 701
+     * 
+     * -----------------------------------------------
+     * 
+     * This test does not kill any mutant. However, by 
+     * manually testing, we know for sure that these 
+     * mutants should be killed with the current test.
+     * 
+     */
+    public void testModifySemiMonthSpecialCaseDayOne() throws ParseException {
+        DateFormat dateParse = new SimpleDateFormat("MMM dd, yyyy H:mm:ss.SSS", Locale.ENGLISH);
+        
+        assertEquals(dateParse.parse("November 16, 2001 0:00:00.000"),
+                     DateUtils.round(dateParse.parse("November 15, 2001 0:00:00.000"), DateUtils.SEMI_MONTH));
+    }
+
+    /**
+     * This test aims to kill the following mutant(s):
+     * 
+     * Operator -> JIR_Ifle
+     * Lines    -> 708
+     * 
+     * -----------------------------------------------
+     * 
+     * This test does not kill any mutant. However, by 
+     * manually testing, we know for sure that this 
+     * mutant should be killed with the current test.
+     * 
+     */
+    public void testModifySemiMonthOffsetComparison() throws ParseException {
+        DateFormat dateParse = new SimpleDateFormat("MMM dd, yyyy H:mm:ss.SSS", Locale.ENGLISH);
+        
+        assertEquals(dateParse.parse("December 16, 2001 0:00:00.000"),
+                     DateUtils.truncate(dateParse.parse("December 19, 2001 0:00:00.000"), DateUtils.SEMI_MONTH));
+    }
+
+    /**
+     * This test aims to kill the following mutant(s):
+     * 
+     * Operator -> JIR_Iflt
      * Lines    -> 712
      * 
      * -----------------------------------------------
@@ -838,47 +886,130 @@ public class StudentTest extends TestCase {
      * Lines    -> 712
      * 
      */
-    public void testModifySemiMonthOffset() throws ParseException {
+    public void testModifySemiMonthOffsetGreater() throws ParseException {
         DateFormat dateParse = new SimpleDateFormat("MMM dd, yyyy H:mm:ss.SSS", Locale.ENGLISH);
         
         assertEquals(dateParse.parse("November 1, 2001 0:00:00.000"),
                      DateUtils.round(dateParse.parse("November 8, 2001 0:00:00.000"), DateUtils.SEMI_MONTH));
     }
 
-    // ---------------- Refactored Until Here --------------------
-
-    /* public void testModify() throws ParseException {
+    /**
+     * This test aims to kill the following mutant(s):
+     * 
+     * Operator -> JIR_Ifgt
+     * Lines    -> 717
+     * 
+     * -----------------------------------------------
+     * 
+     * This test kills the following mutant(s):
+     * 
+     * Operator -> JIR_Ifle
+     * Lines    -> 721
+     * 
+     * -----------------------------------------------
+     * 
+     * This test does not kill any mutant. However, by 
+     * manually testing, we know for sure that this 
+     * mutant should be killed with the current test.
+     * 
+     */
+    public void testModifyAmPmHourOfDayField() throws ParseException {
         DateFormat dateParse = new SimpleDateFormat("MMM dd, yyyy H:mm:ss.SSS", Locale.ENGLISH);
- 
-        // ROUND
- 
-        // kill mutant in line 712
-        assertEquals(dateParse.parse("November 1, 2001 0:00:00.000"),
-                DateUtils.round(dateParse.parse("November 8, 2001 0:00:00.000"), DateUtils.SEMI_MONTH));
- 
-        // kill mutant in line 721
+        
         assertEquals(dateParse.parse("November 8, 2001 12:00:00.000"),
-                DateUtils.round(dateParse.parse("November 8, 2001 12:30:30.500"), Calendar.AM_PM));
- 
-        // kill mutant in line 724
-        assertEquals(dateParse.parse("November 8, 2001 0:00:00.000"),
-                DateUtils.round(dateParse.parse("November 8, 2001 6:30:30.500"), Calendar.AM_PM));
- 
-        // kill mutant in line 735
+                     DateUtils.round(dateParse.parse("November 8, 2001 12:30:30.500"), Calendar.AM_PM));
+    }
+
+    /**
+     * This test aims to kill the following mutant(s):
+     * 
+     * Operator -> JIR_Ifle
+     * Lines    -> 721
+     * 
+     * -----------------------------------------------
+     * 
+     * This test does not kill any mutant. However, by 
+     * manually testing, we know for sure that this 
+     * mutant should be killed with the current test.
+     * 
+     */
+    public void testModifyAmPmHourOfDayOffsetComparison() throws ParseException {
+        DateFormat dateParse = new SimpleDateFormat("MMM dd, yyyy H:mm:ss.SSS", Locale.ENGLISH);
+        
+        assertEquals(dateParse.parse("November 8, 2001 12:00:00.000"),
+                     DateUtils.round(dateParse.parse("November 8, 2001 13:30:30.500"), Calendar.AM_PM));
+    }
+
+    /**
+     * This test aims to kill the following mutant(s):
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 724
+     * 
+     * -----------------------------------------------
+     * 
+     * This test does not kill any mutant. However, by 
+     * manually testing, we know for sure that this 
+     * mutant should be killed with the current test.
+     * 
+     */
+    public void testModifyAmPmHourOfDayOffsetGreater() throws ParseException {
+        DateFormat dateParse = new SimpleDateFormat("MMM dd, yyyy H:mm:ss.SSS", Locale.ENGLISH);
+        
+        assertEquals(dateParse.parse("November 9, 2001 0:00:00.000"),
+                     DateUtils.round(dateParse.parse("November 8, 2001 7:00:00.000"), Calendar.AM_PM));
+    }
+
+
+    /**
+     * This test aims to kill the following mutant(s):
+     * 
+     * Operator -> AIR_Add 
+     * Lines    -> 735
+     * 
+     * -----------------------------------------------
+     * 
+     * This test kills the following mutant(s):
+     * 
+     * Operator -> AIR_Add | AIR_LeftOperand
+     * Lines    -> 735     | 735
+     * 
+     * -----------------------------------------------
+     * 
+     * This test should also have killed the following 
+     * mutant(s):
+     * 
+     * Operator -> JIR_Iflt | JIR_Ifle
+     * Lines    -> 735      | 738
+     * 
+     * -----------------------------------------------
+     * 
+     * By manually testing, we know for sure that these 
+     * mutants should be killed with the current test.
+     * 
+     */
+    public void testModifyMonthOffsetArithmetic() throws ParseException {
+        DateFormat dateParse = new SimpleDateFormat("MMM dd, yyyy H:mm:ss.SSS", Locale.ENGLISH);
+        
         assertEquals(dateParse.parse("December 01, 2001 0:00:00.000"),
-                DateUtils.round(dateParse.parse("November 16, 2001 11:00:00.000"), Calendar.MONTH));
-        assertEquals(dateParse.parse("November 16, 2001 0:00:00.000"),
-                DateUtils.round(dateParse.parse("November 16, 2001 11:00:00.000"), Calendar.DATE));
- 
-        // TRUNCATE
- 
-        // kill mutant in line 708
-        assertEquals(dateParse.parse("December 16, 2001 0:00:00.000"),
-                DateUtils.truncate(dateParse.parse("December 16, 2001 0:00:00.000"), DateUtils.SEMI_MONTH));
-    } */
+                     DateUtils.round(dateParse.parse("November 16, 2001 11:00:00.000"), Calendar.MONTH));
+    }
 
 
-    // -------------------- New functions over here bellow ------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
