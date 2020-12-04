@@ -1,0 +1,819 @@
+{
+  "summary": {
+    "date": "4/dez/2020",
+    "time": "16:21:15",
+    "duration": 69,
+    "testCount": 1,
+    "evaluatedClassesCount": 1,
+    "mutatedClassesCount": 1,
+    "score": 0.0,
+    "allKilledMutantsCount": 373,
+    "allMutantsCount": 424,
+    "testsRuns": 4440,
+    "testsDuration": 68827
+  },
+  "operators": [
+    {
+      "name": "ORV",
+      "description": "Reverses the order of collections with ordering based on comparator"
+    },
+    {
+      "name": "SCR",
+      "description": "stream closing removal"
+    },
+    {
+      "name": "IOD",
+      "description": "delete overriding method"
+    },
+    {
+      "name": "OMD",
+      "description": "delete overloading method declarations, one at a time"
+    },
+    {
+      "name": "JIR_Ifeq",
+      "description": "replace jump instructions with IFEQ (IF_ICMPEQ, IF_ACMPEQ)"
+    },
+    {
+      "name": "SIR_Shr",
+      "description": "replace shift instructions with SHR"
+    },
+    {
+      "name": "EMM",
+      "description": "change a modifier method name to other compatible modifier method names"
+    },
+    {
+      "name": "LIR_RightOperand",
+      "description": "replace binary logical instructions with their right operands"
+    },
+    {
+      "name": "SIR_Ushr",
+      "description": "replace shift instructions with USHR"
+    },
+    {
+      "name": "EOC",
+      "description": "replace reference comparison with content comparison (equals) and vice-versa"
+    },
+    {
+      "name": "OMR",
+      "description": "change overloading method"
+    },
+    {
+      "name": "PNC",
+      "description": "call new with child class type"
+    },
+    {
+      "name": "EGE",
+      "description": "generalization of caught errors"
+    },
+    {
+      "name": "JIR_Ifgt",
+      "description": "replace jump instructions with IFGT (IF_ICMPGT)"
+    },
+    {
+      "name": "PRV",
+      "description": "change operands of reference assignment"
+    },
+    {
+      "name": "JID",
+      "description": "delete field initialization"
+    },
+    {
+      "name": "JDC",
+      "description": "delete the implemented default constructor"
+    },
+    {
+      "name": "IOR",
+      "description": "rename overridden method"
+    },
+    {
+      "name": "AIR_RightOperand",
+      "description": "replace basic binary arithmetic instructions with their right operands"
+    },
+    {
+      "name": "REV",
+      "description": "Reverses the list"
+    },
+    {
+      "name": "AIR_Sub",
+      "description": "replace basic binary arithmetic instructions with SUB"
+    },
+    {
+      "name": "JIR_Ifle",
+      "description": "replace jump instructions with IFLE (IF_ICMPLE)"
+    },
+    {
+      "name": "PPD",
+      "description": "change parameter type to super class of original type"
+    },
+    {
+      "name": "OAC",
+      "description": "change order or number of arguments in method invocations"
+    },
+    {
+      "name": "LIR_Or",
+      "description": "replace binary logical instructions with OR"
+    },
+    {
+      "name": "CCE",
+      "description": "Clears the collection"
+    },
+    {
+      "name": "SIR_LeftOperand",
+      "description": "replace shift instructions with their left operands"
+    },
+    {
+      "name": "JTD",
+      "description": "delete this keyword when field has the same name as parameter"
+    },
+    {
+      "name": "JIR_Iflt",
+      "description": "replace jump instructions with IFLT (IF_ICMPLT)"
+    },
+    {
+      "name": "FBD",
+      "description": "break statements removal from switch"
+    },
+    {
+      "name": "IOP",
+      "description": "relocate calls to overridden method"
+    },
+    {
+      "name": "AIR_Rem",
+      "description": "replace basic binary arithmetic instructions with REM"
+    },
+    {
+      "name": "AIR_Mul",
+      "description": "replace basic binary arithmetic instructions with MUL"
+    },
+    {
+      "name": "AIR_LeftOperand",
+      "description": "replace basic binary arithmetic instructions with their left operands"
+    },
+    {
+      "name": "CSR",
+      "description": "collection synchronization removal"
+    },
+    {
+      "name": "PLD",
+      "description": "change local variable type to super class of original type"
+    },
+    {
+      "name": "ISI",
+      "description": "insert super keyword before fields and methods calls"
+    },
+    {
+      "name": "LIR_Xor",
+      "description": "replace binary logical instructions with XOR"
+    },
+    {
+      "name": "LSF",
+      "description": "Shuffles the list"
+    },
+    {
+      "name": "JIR_Ifne",
+      "description": "replace jump instructions with IFNE (IF_ICMPNE, IF_ACMPNE)"
+    },
+    {
+      "name": "AIR_Div",
+      "description": "replace basic binary arithmetic instructions with DIV"
+    },
+    {
+      "name": "ISD",
+      "description": "delete super keyword before fields and methods calls"
+    },
+    {
+      "name": "JTI",
+      "description": "insert \"this\" keyword when field has the same name as parameter"
+    },
+    {
+      "name": "CCD",
+      "description": "compareTo method distortion"
+    },
+    {
+      "name": "JIR_Ifnull",
+      "description": "replace jump instruction IFNULL with IFNONNULL and vice-versa"
+    },
+    {
+      "name": "LIR_LeftOperand",
+      "description": "replace binary logical instructions with their left operands"
+    },
+    {
+      "name": "LIR_And",
+      "description": "replace binary logical instructions with AND"
+    },
+    {
+      "name": "AIR_Add",
+      "description": "replace basic binary arithmetic instructions with ADD"
+    },
+    {
+      "name": "EAM",
+      "description": "change an accessor method name to other compatible accessor method names"
+    },
+    {
+      "name": "JIR_Ifge",
+      "description": "replace jump instructions with IFGE (IF_ICMPGE)"
+    },
+    {
+      "name": "SIR_Shl",
+      "description": "replace shift instructions with SHL"
+    },
+    {
+      "name": "CST",
+      "description": "Changes LinkedHashSet to HashSet to shuffle order of elements in LinkedHashSet"
+    },
+    {
+      "name": "EOA",
+      "description": "replace reference assignment with content assignment (clone) and vice-versa"
+    },
+    {
+      "name": "DUL",
+      "description": "Duplicates element in the list"
+    },
+    {
+      "name": "CLR",
+      "description": "change list to set that does not allow to duplicated elements"
+    },
+    {
+      "name": "IPC",
+      "description": "delete super constructor call"
+    }
+  ],
+  "tests": [
+    {
+      "name": "org.apache.commons.lang.time.StudentTest",
+      "duration": 1614,
+      "result": "passed"
+    }
+  ],
+  "classes": [
+    {
+      "name": "org.apache.commons.lang.time.DateUtils",
+      "score": 0.879717,
+      "mutantsCount": 424,
+      "mutantsKilledCount": 373,
+      "notKilledMutant": [
+        {
+          "operators": [
+            "JIR_Ifeq"
+          ],
+          "points": [
+            39
+          ],
+          "lines": [
+            855
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Ifle"
+          ],
+          "points": [
+            20
+          ],
+          "lines": [
+            641
+          ]
+        },
+        {
+          "operators": [
+            "EOC"
+          ],
+          "points": [
+            0
+          ],
+          "lines": [
+            235
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Iflt"
+          ],
+          "points": [
+            0
+          ],
+          "lines": [
+            169
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Ifle"
+          ],
+          "points": [
+            32
+          ],
+          "lines": [
+            675
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Ifne"
+          ],
+          "points": [
+            0
+          ],
+          "lines": [
+            259
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Iflt"
+          ],
+          "points": [
+            43
+          ],
+          "lines": [
+            822
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Ifgt"
+          ],
+          "points": [
+            49
+          ],
+          "lines": [
+            855
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Ifgt"
+          ],
+          "points": [
+            0
+          ],
+          "lines": [
+            169
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Ifle"
+          ],
+          "points": [
+            15
+          ],
+          "lines": [
+            517
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Ifle"
+          ],
+          "points": [
+            18
+          ],
+          "lines": [
+            604
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Ifgt"
+          ],
+          "points": [
+            12
+          ],
+          "lines": [
+            260
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Ifle"
+          ],
+          "points": [
+            17
+          ],
+          "lines": [
+            602
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Iflt"
+          ],
+          "points": [
+            15
+          ],
+          "lines": [
+            519
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Iflt"
+          ],
+          "points": [
+            26
+          ],
+          "lines": [
+            653
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Ifle"
+          ],
+          "points": [
+            42
+          ],
+          "lines": [
+            738
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Iflt"
+          ],
+          "points": [
+            22
+          ],
+          "lines": [
+            644
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Iflt"
+          ],
+          "points": [
+            28
+          ],
+          "lines": [
+            659
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Iflt"
+          ],
+          "points": [
+            41
+          ],
+          "lines": [
+            735
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Ifle"
+          ],
+          "points": [
+            38
+          ],
+          "lines": [
+            708
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Ifle"
+          ],
+          "points": [
+            50
+          ],
+          "lines": [
+            901
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Iflt"
+          ],
+          "points": [
+            4
+          ],
+          "lines": [
+            208
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Ifle"
+          ],
+          "points": [
+            30
+          ],
+          "lines": [
+            664
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Ifgt"
+          ],
+          "points": [
+            28
+          ],
+          "lines": [
+            659
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Iflt"
+          ],
+          "points": [
+            35
+          ],
+          "lines": [
+            680
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Iflt"
+          ],
+          "points": [
+            39
+          ],
+          "lines": [
+            724
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Iflt"
+          ],
+          "points": [
+            24
+          ],
+          "lines": [
+            650
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Iflt"
+          ],
+          "points": [
+            34
+          ],
+          "lines": [
+            676
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Ifle"
+          ],
+          "points": [
+            49
+          ],
+          "lines": [
+            899
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Iflt"
+          ],
+          "points": [
+            51
+          ],
+          "lines": [
+            901
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Iflt"
+          ],
+          "points": [
+            17
+          ],
+          "lines": [
+            604
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Ifle"
+          ],
+          "points": [
+            16
+          ],
+          "lines": [
+            519
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Ifne"
+          ],
+          "points": [
+            22
+          ],
+          "lines": [
+            671
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Ifgt"
+          ],
+          "points": [
+            11
+          ],
+          "lines": [
+            234
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Iflt"
+          ],
+          "points": [
+            11
+          ],
+          "lines": [
+            234
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Ifgt"
+          ],
+          "points": [
+            41
+          ],
+          "lines": [
+            717
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Ifgt"
+          ],
+          "points": [
+            38
+          ],
+          "lines": [
+            701
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Ifgt"
+          ],
+          "points": [
+            36
+          ],
+          "lines": [
+            680
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Iflt"
+          ],
+          "points": [
+            2
+          ],
+          "lines": [
+            171
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Ifne"
+          ],
+          "points": [
+            15
+          ],
+          "lines": [
+            672
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Ifle"
+          ],
+          "points": [
+            24
+          ],
+          "lines": [
+            650
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Ifgt"
+          ],
+          "points": [
+            44
+          ],
+          "lines": [
+            729
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Ifle"
+          ],
+          "points": [
+            28
+          ],
+          "lines": [
+            659
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Iflt"
+          ],
+          "points": [
+            8
+          ],
+          "lines": [
+            231
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Iflt"
+          ],
+          "points": [
+            13
+          ],
+          "lines": [
+            267
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Ifgt"
+          ],
+          "points": [
+            24
+          ],
+          "lines": [
+            650
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Ifle"
+          ],
+          "points": [
+            33
+          ],
+          "lines": [
+            675
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Iflt"
+          ],
+          "points": [
+            20
+          ],
+          "lines": [
+            641
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Ifgt"
+          ],
+          "points": [
+            51
+          ],
+          "lines": [
+            861
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Iflt"
+          ],
+          "points": [
+            30
+          ],
+          "lines": [
+            664
+          ]
+        },
+        {
+          "operators": [
+            "JIR_Iflt"
+          ],
+          "points": [
+            3
+          ],
+          "lines": [
+            190
+          ]
+        }
+      ]
+    }
+  ]
+}

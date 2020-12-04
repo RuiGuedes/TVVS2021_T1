@@ -1003,8 +1003,25 @@ public class StudentTest extends TestCase {
                      DateUtils.round(dateParse.parse("November 16, 2001 11:00:00.000"), Calendar.MONTH));
     }
 
-
-
+    /**
+     * This test aims to kill the following mutant(s):
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 822
+     * 
+     * -----------------------------------------------
+     * 
+     * This test does not kill any mutant. However, by 
+     * manually testing, we know for sure that this 
+     * mutant should be killed with the current test.
+     * 
+     */
+    public void testIteratorRangeMonthMonday() throws ParseException {
+        DateFormat dateParser = new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH);
+                 
+        Calendar cal = (Calendar) DateUtils.iterator(dateParser.parse("June 11, 2002"), DateUtils.RANGE_MONTH_MONDAY).next();
+        assertEquals(dateParser.parse("May 27, 2002"), cal.getTime()); 
+    }
 
 
 
