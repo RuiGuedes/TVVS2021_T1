@@ -16,9 +16,9 @@ dataV0 = list(filter(lambda x: x["name"] == "com.google.gson.stream.JsonWriter",
 dataV0Mutants = list(map(lambda x: x["operators"][0] + " | " + str(x["lines"][0]), list(filter(lambda x: x["lines"][0] >= 0, sorted(dataV0["notKilledMutant"], key=lambda mutant: mutant["lines"][0])))))
 
 # Filter Non-Killable Mutants
-syntaxErrorMutants = []
-equivalentMutants = [156]
-nonKillableBugMutants = [213]
+syntaxErrorMutants = [447, 467, 482, 495, 529]
+equivalentMutants = [156, 354, 355, 529]
+nonKillableBugMutants = [213, 346, 366, 392]
 
 excludedMutants = syntaxErrorMutants + equivalentMutants + nonKillableBugMutants
 

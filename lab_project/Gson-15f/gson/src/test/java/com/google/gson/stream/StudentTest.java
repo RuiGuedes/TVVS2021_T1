@@ -165,37 +165,126 @@ public final class StudentTest extends TestCase {
       assertFalse(jsonWriter.getSerializeNulls());
     }
 
-    // /**
-    //  * This test aims to kill the following mutant:
-    //  * 
-    //  * Operator -> AIR_LeftOperand
-    //  * Lines    -> 355
-    //  * 
-    //  * --------------------------------------------
-    //  * 
-    //  * This test kills the following mutants:
-    //  * 
-    //  * Operator -> JIR_Ifle | AIR_LeftOperand | AIR_RightOperand | AIR_Div | AIR_Rem | AIR_Sub
-    //  * Lines    -> 354      | 355             | 355              | 355     | 355     | 355
-    //  * 
-    //  */
-    // public void testStackPushBoundaries() throws IOException {
-    //   String expected = "";
-    //   StringWriter stringWriter = new StringWriter();
-    //   JsonWriter jsonWriter = new JsonWriter(stringWriter);
-
-    //   for(int idx = 0; idx <= 32; idx++) {
-    //     jsonWriter.beginArray();
-    //     expected += "[";
-    //   }
+    /**
+     * This test aims to kill the following mutant(s):
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 346
+     * 
+     * -----------------------------------------------
+     * 
+     * This test kills the following mutant(s):
+     * 
+     * Operator -> JIR_Ifgt
+     * Lines    -> 346
+     * 
+     * -----------------------------------------------
+     * 
+     * This test should have killed the following 
+     * mutant(s):
+     * 
+     * Operator -> JIR_Iflt | JIR_Ifgt
+     * Lines    -> 346      | 346
+     * 
+     * -----------------------------------------------
+     * 
+     * By manually testing, we know for sure that these 
+     * mutants should be killed with the current test.
+     * 
+     */
+    public void testCloseContextNonEmpty() throws IOException {
+      StringWriter stringWriter = new StringWriter();
+      JsonWriter jsonWriter = new JsonWriter(stringWriter);
       
-    //   for(int idx = 0; idx <= 32; idx++) {
-    //     jsonWriter.endArray();
-    //     expected += "]";
-    //   }
+      jsonWriter.setIndent("   ");
+      
+      jsonWriter.beginArray();
+      jsonWriter.beginObject();
+      jsonWriter.endObject();
+      jsonWriter.endArray();
+      
+      String expected = "[\n   {}\n]";
+      assertEquals(expected, stringWriter.toString());
+    }
 
-    //   assertEquals(expected, stringWriter.toString());
-    // }
+    /**
+     * This test aims to kill the following mutant:
+     * 
+     * Operator -> AIR_LeftOperand
+     * Lines    -> 355
+     * 
+     * --------------------------------------------
+     * 
+     * This test kills the following mutant(s):
+     * 
+     * Operator -> AIR_LeftOperand | AIR_RightOperand | AIR_Div | AIR_Rem | AIR_Sub
+     * Lines    -> 355             | 355              | 355     | 355     | 355
+     * 
+     */
+    public void testStackPushBoundaries() throws IOException {
+      String expected = "";
+      StringWriter stringWriter = new StringWriter();
+      JsonWriter jsonWriter = new JsonWriter(stringWriter);
+
+      for(int idx = 0; idx <= 32; idx++) {
+        jsonWriter.beginArray();
+        expected += "[";
+      }
+      
+      for(int idx = 0; idx <= 32; idx++) {
+        jsonWriter.endArray();
+        expected += "]";
+      }
+      assertEquals(expected, stringWriter.toString());
+    }
+
+    /**
+     * This test aims to kill the following mutant(s):
+     * 
+     * Operator -> JIR_Ifgt
+     * Lines    -> 366
+     * 
+     * -----------------------------------------------
+     * 
+     * This test does not kill any mutant. However, by 
+     * manually testing, we know for sure that this 
+     * mutant should be killed with the current test.
+     * 
+     */
+    public void testPeekStackSizeGreater() throws IOException {
+      StringWriter stringWriter = new StringWriter();
+      JsonWriter jsonWriter = new JsonWriter(stringWriter);
+      
+      jsonWriter.beginArray();
+      jsonWriter.endArray();
+
+      assertEquals("[]", stringWriter.toString());      
+    }
+
+    /**
+     * This test aims to kill the following mutant(s):
+     * 
+     * Operator -> JIR_Ifgt
+     * Lines    -> 392
+     * 
+     * -----------------------------------------------
+     * 
+     * This test does not kill any mutant. However, by 
+     * manually testing, we know for sure that this 
+     * mutant should be killed with the current test.
+     * 
+     */
+    public void testNameStackSizeGreater() throws IOException {
+      StringWriter stringWriter = new StringWriter();
+      JsonWriter jsonWriter = new JsonWriter(stringWriter);      
+
+      jsonWriter.beginObject();
+      jsonWriter.name("a").value(true);
+      jsonWriter.endObject();
+
+      String expected = "{\"a\":true}";
+      assertEquals(expected, stringWriter.toString());     
+    }
 
     // /**
     //  * This test aims to kill the following mutant:
@@ -451,26 +540,9 @@ public final class StudentTest extends TestCase {
     //   assertEquals(expected, stringWriter.toString());
     // }
 
-    // /**
-    //  * This test aims to kill the following mutant:
-    //  * 
-    //  * Operator -> JIR_Ifgt
-    //  * Lines    -> 366
-    //  * 
-    //  * --------------------------------------------
-    //  * 
-    //  * 
-    //  * 
-    //  */
-    // public void toCheck_2() throws IOException {
-    //   StringWriter stringWriter = new StringWriter();
-    //   JsonWriter jsonWriter = new JsonWriter(stringWriter);
-      
-    //   jsonWriter.beginArray();
-    //   jsonWriter.endArray();
 
-    //   assertEquals("[]", stringWriter.toString());      
-    // }
+
+
 
 
 
