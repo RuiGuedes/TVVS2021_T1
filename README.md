@@ -44,12 +44,14 @@ Fábio Manuel Neves de Araújo <br>
 ### Generic Mutation
 
 * `./bin/judy -p ../Gson-15f/target/classes/ -t ../Gson-15f/target/test-classes/`
+* `./bin/judy -p ../Lang-53f/target/classes/ -t ../Lang-53f/target/test-classes/`
 
 ### Stream Package Mutation 
 
-* `./bin/judy -p ../Gson-15f/target/classes/ -t ../Gson-15f/target/test-classes/com/google/gson/stream/`
+* `./bin/judy -p ../Gson-15f/target/classes/com/google/gson/stream/ -t ../Gson-15f/target/test-classes/com/google/gson/stream/`
+* `./bin/judy -p ../Lang-53f/target/classes/org/apache/commons/lang/time/ -t ../Lang-53f/target/test-classes/org/apache/commons/lang/time/`
 
 ### StudentTest Mutation
 
-* `./bin/judy -p ../Gson-15f/target/classes/ -t ../Gson-15f/target/test-classes/com/google/gson/stream/StudentTest.class`
+* `./bin/judy -p ../Gson-15f/target/classes/com/google/gson/stream/JsonWriter.class -t ../Gson-15f/target/test-classes/com/google/gson/stream/StudentTest.class`
 * `./bin/judy -p ../Lang-53f/target/classes/org/apache/commons/lang/time/DateUtils.class -t ../Lang-53f/target/test-classes/org/apache/commons/lang/time/StudentTest.class`

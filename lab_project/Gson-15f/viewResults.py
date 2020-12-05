@@ -6,32 +6,30 @@ import json
 
 # This script compares the specified file version with the one (results.json) present in judy's folder.
 
-fileVersion = "V1.json"
-judyFileVersion = "result.json"
+fileDir = "./mutants_results/Mutants" + "Before" + "StudentTest.json"
+fileDirJudy = "../judy-3.0.0-M1/result.json"
 
-# Get difference of two lists
-def diff(list1, list2):
-    return (list(list(set(list1)-set(list2)) + list(set(list2)-set(list1))))
-
-with open('./mutants_results/' + fileVersion) as file:
+with open(fileDir) as file:
     fileV0 = json.load(file)
-
-with open('../judy-3.0.0-M1/' + judyFileVersion) as file:
-    fileV1 = json.load(file)
 
 dataV0 = list(filter(lambda x: x["name"] == "com.google.gson.stream.JsonWriter", fileV0["classes"]))[0]
 dataV0Mutants = list(map(lambda x: x["operators"][0] + " | " + str(x["lines"][0]), list(filter(lambda x: x["lines"][0] >= 0, sorted(dataV0["notKilledMutant"], key=lambda mutant: mutant["lines"][0])))))
 
-dataV1 = list(filter(lambda x: x["name"] == "com.google.gson.stream.JsonWriter", fileV1["classes"]))[0]
-dataV1Mutants = list(map(lambda x: x["operators"][0] + " | " + str(x["lines"][0]), list(filter(lambda x: x["lines"][0] >= 0, sorted(dataV1["notKilledMutant"], key=lambda mutant: mutant["lines"][0])))))
+# Filter Non-Killable Mutants
+syntaxErrorMutants = []
+equivalentMutants = []
+nonKillableBugMutants = []
 
-dataDiff = diff(dataV0Mutants, dataV1Mutants)
+excludedMutants = syntaxErrorMutants + equivalentMutants + nonKillableBugMutants
 
-print("Operator | Line | " + str(len(dataV0Mutants)))
+dataV1Mutants = list(map(lambda x: x["operators"][0] + " | " + str(x["lines"][0]), list(filter(lambda x: x["lines"][0] >= 0 and x["lines"][0] not in excludedMutants, sorted(dataV0["notKilledMutant"], key=lambda mutant: mutant["lines"][0])))))
+
+## Choose which data to display
+datatoDisplay = dataV1Mutants
+
+print("Operator | Line | " + str(len(datatoDisplay)))
 print("--------------------------------")
 
-
-for mutant in dataV0Mutants:
+for mutant in datatoDisplay:
     print(mutant)
     print("--------------------------------")
-
