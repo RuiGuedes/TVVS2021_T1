@@ -9,7 +9,7 @@ import json
 fileDir = "./mutants_results/Mutants" + "Before" + "StudentTest.json"
 fileDirJudy = "../judy-3.0.0-M1/result.json"
 
-with open(fileDir) as file:
+with open(fileDirJudy) as file:
     fileV0 = json.load(file)
 
 dataV0 = list(filter(lambda x: x["name"] == "com.google.gson.stream.JsonWriter", fileV0["classes"]))[0]
@@ -17,8 +17,8 @@ dataV0Mutants = list(map(lambda x: x["operators"][0] + " | " + str(x["lines"][0]
 
 # Filter Non-Killable Mutants
 syntaxErrorMutants = []
-equivalentMutants = []
-nonKillableBugMutants = []
+equivalentMutants = [156]
+nonKillableBugMutants = [213]
 
 excludedMutants = syntaxErrorMutants + equivalentMutants + nonKillableBugMutants
 
