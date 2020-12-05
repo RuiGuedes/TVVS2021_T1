@@ -286,66 +286,141 @@ public final class StudentTest extends TestCase {
       assertEquals(expected, stringWriter.toString());     
     }
 
-    // /**
-    //  * This test aims to kill the following mutant:
-    //  * 
-    //  * Operator -> JIR_Ifgt
-    //  * Lines    -> 543
-    //  * 
-    //  * --------------------------------------------
-    //  * 
-    //  * Operator -> JIR_Iflt 
-    //  * Lines    -> 543
-    //  * 
-    //  */
-    // public void testFlushException() throws IOException {
-    //   StringWriter stringWriter = new StringWriter();
-    //   JsonWriter jsonWriter = new JsonWriter(stringWriter);
-  
-    //   try {
-    //     jsonWriter.flush();
-    //   } catch (IllegalStateException e) {
-    //     fail();
-    //   }
-    // }
+    /**
+     * This test aims to kill the following mutant(s):
+     * 
+     * Operator -> JIR_Ifgt
+     * Lines    -> 543
+     * 
+     * -----------------------------------------------
+     * 
+     * This test should have killed the following 
+     * mutant(s):
+     * 
+     * Operator -> JIR_Ifgt | JIR_Iflt
+     * Lines    -> 543      | 543
+     * 
+     * -----------------------------------------------
+     * 
+     * This test does not kill any mutant. By manually
+     * testing, we know for sure that these mutants 
+     * should be killed with the current test.
+     * 
+     */
+    public void testFlushException() throws IOException {
+      StringWriter stringWriter = new StringWriter();
+      JsonWriter jsonWriter = new JsonWriter(stringWriter);
+      
+      jsonWriter.beginObject();
+      jsonWriter.endObject();
+      jsonWriter.close();
 
-    // public void test_558_incomplete() throws IOException {
-    //   StringWriter stringWriter = new StringWriter();
-    //   JsonWriter jsonWriter = new JsonWriter(stringWriter);
-  
-    //   try {
-    //     jsonWriter.close();
-    //     fail();
-  
-    //   } catch (IOException e) {
-    //     assertEquals("Incomplete document", e.getMessage());
-    //   }
-    // }
+      try {
+        jsonWriter.flush();
+        fail();
+      } catch (IllegalStateException e) {}
+    }
 
-    // /**
-    //  * This test aims to kill the following mutant:
-    //  * 
-    //  * Operator -> EGE
-    //  * Lines    -> 559
-    //  * 
-    //  * --------------------------------------------
-    //  * 
-    //  * Operator -> EGE | PNC | PNC | 
-    //  * Lines    -> 559 | 559 | 559 |
-    //  * 
-    //  */
-    // public void testCloseGeneralMutation() throws IOException {
-    //   StringWriter stringWriter = new StringWriter();
-    //   JsonWriter jsonWriter = new JsonWriter(stringWriter);
+    /**
+     * This test aims to kill the following mutant(s):
+     * 
+     * Target   -> size > 1
+     * Operator -> JIR_Ifge
+     * Lines    -> 558
+     * 
+     * -----------------------------------------------
+     * 
+     * This test should have killed the following 
+     * mutant(s):
+     * 
+     * Operator -> JIR_Ifge | JIR_Ifle
+     * Lines    -> 558      | 558
+     * 
+     * -----------------------------------------------
+     * 
+     * This test does not kill any mutant. By manually
+     * testing, we know for sure that these mutants 
+     * should be killed with the current test.
+     * 
+     */
+    public void testCloseIncompleteDocumentFirstCondition() throws IOException {
+      StringWriter stringWriter = new StringWriter();
+      JsonWriter jsonWriter = new JsonWriter(stringWriter);
+
+      jsonWriter.beginArray();
+      jsonWriter.endArray();
+            
+      try {
+        jsonWriter.close();
+      } catch (IOException e) {
+        fail();
+      }
+    }
+
+    /**
+     * This test aims to kill the following mutant(s):
+     * 
+     * Target   -> size == 1
+     * Operator -> JIR_Iflt
+     * Lines    -> 558
+     * 
+     * -----------------------------------------------
+     * 
+     * This test kills the following mutant(s):
+     * 
+     * Operator -> JIR_Ifle | JIR_Ifle
+     * Lines    -> 558      | 558
+     * 
+     * -----------------------------------------------
+     * 
+     * This test should have killed the following 
+     * mutant(s):
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 558
+     * 
+     * -----------------------------------------------
+     * 
+     * By manually testing, we know for sure that this 
+     * mutant should be killed with the current test.
+     * 
+     */
+    public void testCloseIncompleteDocumentSecondCondition() throws IOException {
+      StringWriter stringWriter = new StringWriter();
+      JsonWriter jsonWriter = new JsonWriter(stringWriter);
+            
+      try {
+        jsonWriter.close();
+        fail();  
+      } catch (IOException e) {}
+    }
+
+    /**
+     * This test aims to kill the following mutant:
+     * 
+     * Operator -> EGE
+     * Lines    -> 559
+     * 
+     * --------------------------------------------
+     * 
+     * This test kills the following mutant(s):
+     * 
+     * Operator -> EGE
+     * Lines    -> 559
+     * 
+     */
+    public void testCloseGeneralMutation() throws IOException {
+      StringWriter stringWriter = new StringWriter();
+      JsonWriter jsonWriter = new JsonWriter(stringWriter);
   
-    //   jsonWriter.beginObject();
+      jsonWriter.beginObject();
   
-    //   try {
-    //     jsonWriter.close();
-    //   } catch (Exception e) {
-    //     assertEquals(IOException.class, e.getClass());
-    //   }
-    // }
+      try {
+        jsonWriter.close();
+      } catch (Exception e) {
+        assertEquals(IOException.class, e.getClass());
+      }
+    }
 
     // /**
     //  * This test aims to kill the following mutant:
