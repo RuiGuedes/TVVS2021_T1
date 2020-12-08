@@ -208,6 +208,39 @@ public final class StudentTest extends TestCase {
     }
 
     /**
+     * This test aims to kill the following mutant(s):
+     * 
+     * Operator -> JIR_Iflt
+     * Lines    -> 354
+     * 
+     * -----------------------------------------------
+     * 
+     * This test should have killed the following 
+     * mutant(s):
+     * 
+     * Operator -> JIR_Iflt | JIR_Ifle
+     * Lines    -> 354      | 354
+     * 
+     * -----------------------------------------------
+     * 
+     * By manually testing, we know for sure that these 
+     * mutants should be killed with the current test.
+     * 
+     */
+    public void testPushArrayIndexException() throws IOException {
+      StringWriter stringWriter = new StringWriter();
+      
+      try {
+        JsonWriter jsonWriter = new JsonWriter(stringWriter);
+        jsonWriter.beginObject();
+        jsonWriter.endObject();      
+        assertEquals("{}", stringWriter.toString());
+      } catch (ArrayIndexOutOfBoundsException e) {
+        fail();
+      }
+    }
+
+    /**
      * This test aims to kill the following mutant:
      * 
      * Operator -> AIR_LeftOperand
@@ -574,7 +607,11 @@ public final class StudentTest extends TestCase {
       }
     }
 
-
+    // 32 analisados
+    // 9 não analisados e mortos
+    // 8 equivalentes
+    // 6 com linha negativa
+    // 17 com erros sintaticos
 
 
 
