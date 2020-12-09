@@ -101,8 +101,8 @@ public final class StudentTest extends TestCase {
      * 
      * This test kills the following mutant(s):
      * 
-     * Operator -> JTD
-     * Lines    -> 214
+     * Operator -> JTD | JIR_Ifge
+     * Lines    -> 214 | 213
      * 
      */
     public void testSetIndentKeywordRemoval() throws IOException {
@@ -250,8 +250,8 @@ public final class StudentTest extends TestCase {
      * 
      * This test kills the following mutant(s):
      * 
-     * Operator -> AIR_LeftOperand | AIR_RightOperand | AIR_Div | AIR_Rem | AIR_Sub
-     * Lines    -> 355             | 355              | 355     | 355     | 355
+     * Operator -> JIR_Ifle | AIR_LeftOperand | AIR_RightOperand | AIR_Div | AIR_Rem | AIR_Sub
+     * Lines    -> 354      | 355             | 355              | 355     | 355     | 355
      * 
      */
     public void testStackPushBoundaries() throws IOException {
@@ -606,12 +606,6 @@ public final class StudentTest extends TestCase {
         fail();
       }
     }
-
-    // 32 analisados
-    // 9 não analisados e mortos
-    // 8 equivalentes
-    // 6 com linha negativa
-    // 17 com erros sintaticos
 
 
 
