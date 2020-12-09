@@ -11,7 +11,51 @@ import java.math.BigInteger;
 
 @SuppressWarnings("resource")
 public final class StudentTest extends TestCase {
+  
+  /**
+   * This test aims to kill the following mutant(s):
+   * 
+   * Target   -> Boolean 
+   * Operator -> OMD 
+   * Lines    -> -1  
+   * 
+   * -----------------------------------------------
+   * 
+   * This test should have killed the following 
+   * mutant(s):
+   * 
+   * Target   -> String | Boolean
+   * Operator -> OMD    | OMD
+   * Lines    -> -1    | -1
+   * 
+   * -----------------------------------------------
+   * 
+   * This test does not kill any mutant. By manually
+   * testing, we know for sure that these mutants 
+   * should be killed with the current test.
+   * 
+   */
+  public void testValueOverloadingMethods() throws IOException {
+    StringWriter stringWriter = new StringWriter();
+    JsonWriter jsonWriter = new JsonWriter(stringWriter);
     
+    try {
+      jsonWriter.beginObject();
+      jsonWriter.name("a").value("String");
+      jsonWriter.name("b").value(true);
+      jsonWriter.name("c").value((Boolean)null);
+      jsonWriter.name("d").value(Double.MAX_VALUE);
+      jsonWriter.name("e").value(Long.MAX_VALUE);
+      jsonWriter.name("f").value((Number)3);
+      jsonWriter.endObject();
+
+      String expected = "{\"a\":\"String\",\"b\":true,\"c\":null,\"d\":1.7976931348623157E308,\"e\":9223372036854775807,\"f\":3}";
+      assertEquals(expected, stringWriter.toString());
+    } catch (Exception e) {
+      fail();
+    }
+  }
+
     /**
      * This test aims to kill the following mutant:
      * 
@@ -606,8 +650,6 @@ public final class StudentTest extends TestCase {
         fail();
       }
     }
-
-
 
 
 

@@ -17,12 +17,12 @@ dataV0Mutants = list(map(lambda x: x["operators"][0] + " | " + str(x["lines"][0]
 
 # Filter Non-Killable Mutants
 syntaxErrorMutants = [447, 467, 482, 495, 529, 565, 631]
-equivalentMutants = [156, 355, 529, 555, 558]
-nonKillableBugMutants = [213, 346, 354, 366, 392, 543, 558, 569, 572, 579, 584, 590, 602, 615]
+equivalentMutants = [-1, 156, 355, 529, 555, 558]
+nonKillableBugMutants = [-1, 213, 346, 354, 366, 392, 543, 558, 569, 572, 579, 584, 590, 602, 615]
 
 excludedMutants = syntaxErrorMutants + equivalentMutants + nonKillableBugMutants
 
-dataV1Mutants = list(map(lambda x: x["operators"][0] + " | " + str(x["lines"][0]), list(filter(lambda x: x["lines"][0] >= 0 and x["lines"][0] not in excludedMutants, sorted(dataV0["notKilledMutant"], key=lambda mutant: mutant["lines"][0])))))
+dataV1Mutants = list(map(lambda x: x["operators"][0] + " | " + str(x["lines"][0]), list(filter(lambda x: x["lines"][0] not in excludedMutants, sorted(dataV0["notKilledMutant"], key=lambda mutant: mutant["lines"][0])))))
 
 ## Choose which data to display
 datatoDisplay = dataV1Mutants
