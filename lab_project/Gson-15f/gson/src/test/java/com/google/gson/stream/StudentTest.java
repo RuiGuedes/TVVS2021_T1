@@ -24,9 +24,9 @@ public final class StudentTest extends TestCase {
    * This test should have killed the following 
    * mutant(s):
    * 
-   * Target   -> String | Boolean
-   * Operator -> OMD    | OMD
-   * Lines    -> -1    | -1
+   * Target   -> String | Boolean | Number
+   * Operator -> OMD    | OMD     | OMD
+   * Lines    -> -1     | -1      | -1
    * 
    * -----------------------------------------------
    * 
@@ -46,10 +46,10 @@ public final class StudentTest extends TestCase {
       jsonWriter.name("c").value((Boolean)null);
       jsonWriter.name("d").value(Double.MAX_VALUE);
       jsonWriter.name("e").value(Long.MAX_VALUE);
-      jsonWriter.name("f").value((Number)3);
+      jsonWriter.name("f").value(new BigInteger("9223372036854775808"));
       jsonWriter.endObject();
 
-      String expected = "{\"a\":\"String\",\"b\":true,\"c\":null,\"d\":1.7976931348623157E308,\"e\":9223372036854775807,\"f\":3}";
+      String expected = "{\"a\":\"String\",\"b\":true,\"c\":null,\"d\":1.7976931348623157E308,\"e\":9223372036854775807,\"f\":9223372036854775808}";
       assertEquals(expected, stringWriter.toString());
     } catch (Exception e) {
       fail();
